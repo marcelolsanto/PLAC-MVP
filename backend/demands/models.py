@@ -51,6 +51,12 @@ class Demand(models.Model):
     needs_anticipation = models.BooleanField(default=False, verbose_name="Alerta de Antecipação para Ano Anterior")
     pncp_published = models.BooleanField(default=False, verbose_name="Publicado no PNCP")
 
+    # Campos de deliberação executiva (UC05/UC06/UC07)
+    dafri_opinion = models.TextField(blank=True, null=True, verbose_name="Parecer Técnico DAFRI")
+    dafri_approved = models.BooleanField(default=False, verbose_name="Aprovação DAFRI")
+    redir_minute_number = models.CharField(max_length=100, blank=True, null=True, verbose_name="Número da Ata REDIR")
+    is_extraordinary = models.BooleanField(default=False, verbose_name="Demanda Extraordinária (Fora do Ciclo)")
+
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="demands")
     created_at = models.DateTimeField(auto_now_add=True)
 

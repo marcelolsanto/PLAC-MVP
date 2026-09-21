@@ -6,6 +6,7 @@ import NewDemand from './NewDemand';
 import DirectorApprovalPanel from '../components/DirectorApprovalPanel';
 import GCCPanel from '../components/GCCPanel';
 import ExecutiveDashboard from '../components/ExecutiveDashboard';
+import ExecutiveDeliberationPanel from '../components/ExecutiveDeliberationPanel';
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -123,6 +124,20 @@ export default function Dashboard() {
           >
             📅 Consolidação GCC & Calendário (UC03)
           </button>
+
+          <button
+            onClick={() => {
+              setActiveTab('deliberation');
+              setShowNewDemand(false);
+            }}
+            className={`text-sm pb-2 font-medium border-b-2 whitespace-nowrap transition ${
+              activeTab === 'deliberation'
+                ? 'border-blue-500 text-blue-400'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            🏛️ Deliberação REDIR & DAFRI (UC05/UC06)
+          </button>
         </div>
       </div>
 
@@ -134,6 +149,8 @@ export default function Dashboard() {
           <GCCPanel />
         ) : activeTab === 'approval' ? (
           <DirectorApprovalPanel />
+        ) : activeTab === 'deliberation' ? (
+          <ExecutiveDeliberationPanel />
         ) : showNewDemand ? (
           <NewDemand
             demandToEdit={demandToEdit}

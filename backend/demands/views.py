@@ -140,4 +140,64 @@ class DemandViewSet(viewsets.ModelViewSet):
             'updated_count': updated_count,
         })
 
+    @action(detail=True, methods=['post'])
+    def dafri_opinion(self, request, pk=None):
+        demand = self.get_object()
+        opinion = request.data.get('opinion', '').strip()
+        approved = request.data.get('approved', False)
+
+        if not opinion:
+            return Response(
+                {'error': 'É obrigatório informar o parecer técnico.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        demand.dafri_opinion = opinion
+        demand.dafri_approved = bool(approved)
+        demand.save()
+        
+        return Response(DemandSerializer(demand).data)
+
+    @action(detail=False, methods=['post'])
+    def redir_approve(self, request):
+        minute_number = request.data.get('minute_number', '').strip()
+        if not minute_number:
+            return Response(
+                {'error': 'O número da ata da REDIR é obrigatório.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        demands = Demand.objects.filter(status='CONSOLIDADO')
+        updated_count = 0
+        for d in demands:
+            d.status = 'VIGENTE'
+            d.redir_minute_number = minute_number
+            d.save()
+            updated_count += 1
+            
+        return Response({
+            'message': f'Virada de ciclo realizada com sucesso. {updated_count} demandas passaram para VIGENTE.',
+            'updated_count': updated_count
+        })
+
+    @action(detail=True, methods=['post'])
+    def redir_reject(self, request, pk=None):
+        demand = self.get_object()
+        reason = request.data.get('reason', '').strip()
+        if not reason:
+            return Response(
+                {'error': 'É obrigatório informar o motivo da reprovação na REDIR.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+            
+        demand.status = 'DEVOLVIDO_AJUSTES'
+        demand.rejection_reason = f"Reprovado na REDIR: {reason}"
+        demand.save()
+        
+        return Response(DemandSerializer(demand).data)
+
+    @action(detail=False, methods=['get'])
+    def dafri_queue(self, request):
+        demands = Demand.objects.filter(status='CONSOLIDADO').order_by('-created_at')
+        return Response(DemandSerializer(demands, many=True).data)
 
