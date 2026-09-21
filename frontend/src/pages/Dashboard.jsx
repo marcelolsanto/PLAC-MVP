@@ -11,6 +11,7 @@ export default function Dashboard() {
   const { user, logout } = useAuth();
   const [demands, setDemands] = useState([]);
   const [showNewDemand, setShowNewDemand] = useState(false);
+  const [demandToEdit, setDemandToEdit] = useState(null);
   const [activeTab, setActiveTab] = useState('executive'); // 'executive', 'demands', 'approval', 'gcc'
   const [loading, setLoading] = useState(true);
 
@@ -135,18 +136,33 @@ export default function Dashboard() {
           <DirectorApprovalPanel />
         ) : showNewDemand ? (
           <NewDemand
+            demandToEdit={demandToEdit}
             onDemandCreated={() => {
+              setDemandToEdit(null);
               setShowNewDemand(false);
               fetchDemands();
             }}
-            onCancel={() => setShowNewDemand(false)}
+            onCancel={() => {
+              setDemandToEdit(null);
+              setShowNewDemand(false);
+            }}
           />
         ) : (
           <div>
             {loading ? (
               <div className="text-center py-12 text-slate-400">Carregando esteira de demandas...</div>
             ) : (
-              <DemandList demands={demands} onNewDemandClick={() => setShowNewDemand(true)} />
+              <DemandList
+                demands={demands}
+                onNewDemandClick={() => {
+                  setDemandToEdit(null);
+                  setShowNewDemand(true);
+                }}
+                onEditDemandClick={(demand) => {
+                  setDemandToEdit(demand);
+                  setShowNewDemand(true);
+                }}
+              />
             )}
           </div>
         )}

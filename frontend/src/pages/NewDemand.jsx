@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 
-export default function NewDemand({ onDemandCreated, onCancel }) {
+export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
+  const isEditing = Boolean(demandToEdit);
+
   const [formData, setFormData] = useState({
-    description: '',
-    item_type: 'BEM',
-    catmat_code: '',
-    estimated_value: '',
-    intended_date: '',
-    strategic_alignment: '',
-    f1: 1,
-    f2: 1,
-    f3: 1,
-    f4: 1,
+    description: demandToEdit?.description || '',
+    item_type: demandToEdit?.item_type || 'BEM',
+    catmat_code: demandToEdit?.catmat_code || '',
+    estimated_value: demandToEdit?.estimated_value || '',
+    intended_date: demandToEdit?.intended_date || '',
+    strategic_alignment: demandToEdit?.strategic_alignment || '',
+    f1: demandToEdit?.f1 || 1,
+    f2: demandToEdit?.f2 || 1,
+    f3: demandToEdit?.f3 || 1,
+    f4: demandToEdit?.f4 || 1,
   });
 
   const [loading, setLoading] = useState(false);
@@ -42,14 +44,18 @@ export default function NewDemand({ onDemandCreated, onCancel }) {
     setLoading(true);
 
     try {
-      await api.post('/demands/', formData);
+      if (isEditing) {
+        await api.put(`/demands/${demandToEdit.id}/`, formData);
+      } else {
+        await api.post('/demands/', formData);
+      }
       onDemandCreated();
     } catch (err) {
       const apiMsg =
         err.response?.data?.detail ||
         (typeof err.response?.data === 'string' ? err.response?.data : null) ||
         JSON.stringify(err.response?.data) ||
-        'Erro ao registrar necessidade de contratação.';
+        'Erro ao salvar necessidade de contratação.';
       setError(`Falha ao salvar: ${apiMsg}`);
     } finally {
       setLoading(false);
@@ -57,7 +63,19 @@ export default function NewDemand({ onDemandCreated, onCancel }) {
   };
 
   return (
-    <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-md text-white">
+    <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-md text-white space-y-4">
+      {/* Banner de aviso de devolução se for edição */}
+      {isEditing && demandToEdit?.rejection_reason && (
+        <div className="p-4 bg-red-950/60 border border-red-500/50 rounded-lg text-xs space-y-1">
+          <p className="font-bold text-red-400 uppercase tracking-wide">
+            Ajuste Solicitado pelo Diretor:
+          </p>
+          <p className="text-red-200 text-sm italic">"{demandToEdit.rejection_reason}"</p>
+          <p className="text-slate-400 text-[11px] pt-1">
+            Você pode alterar qualquer campo abaixo. Ao salvar, a prioridade será recalculada e o item reenviado à Diretoria.
+          </p>
+        </div>
+      )}
       <div className="flex items-center justify-between pb-4 border-b border-slate-700 mb-6">
         <div>
           <h2 className="text-xl font-bold">Novo Registro de Necessidade (UC01)</h2>
@@ -215,9 +233,15 @@ export default function NewDemand({ onDemandCreated, onCancel }) {
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm shadow transition"
+            className={`px-6 py-2.5 ${
+              isEditing ? 'bg-amber-600 hover:bg-amber-700' : 'bg-blue-600 hover:bg-blue-700'
+            } text-white font-medium rounded-lg text-sm shadow transition`}
           >
-            {loading ? 'Processando Cálculo...' : 'Salvar Necessidade'}
+            {loading
+              ? 'Processando Cálculo...'
+              : isEditing
+              ? '✓ Salvar Ajustes e Reenviar à Diretoria'
+              : 'Salvar Necessidade'}
           </button>
         </div>
       </form>

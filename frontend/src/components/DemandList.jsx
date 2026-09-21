@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function DemandList({ demands, onNewDemandClick }) {
+export default function DemandList({ demands, onNewDemandClick, onEditDemandClick }) {
   const getPriorityBadge = (level, score) => {
     switch (level) {
       case 'ALTO':
@@ -107,11 +107,24 @@ export default function DemandList({ demands, onNewDemandClick }) {
                 </div>
               </div>
 
-              {/* Destaque do motivo se foi devolvido */}
-              {demand.status === 'DEVOLVIDO_AJUSTES' && demand.rejection_reason && (
-                <div className="p-3 bg-red-950/40 border border-red-500/30 rounded-lg text-xs text-red-300 flex items-start gap-2">
-                  <span className="font-bold text-red-400 shrink-0">Motivo da Devolução:</span>
-                  <span>{demand.rejection_reason}</span>
+              {/* Destaque do motivo se foi devolvido e botão para editar */}
+              {demand.status === 'DEVOLVIDO_AJUSTES' && (
+                <div className="space-y-2">
+                  {demand.rejection_reason && (
+                    <div className="p-3 bg-red-950/40 border border-red-500/30 rounded-lg text-xs text-red-300 flex items-start gap-2">
+                      <span className="font-bold text-red-400 shrink-0">Motivo da Devolução:</span>
+                      <span>{demand.rejection_reason}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-end pt-1">
+                    <button
+                      onClick={() => onEditDemandClick && onEditDemandClick(demand)}
+                      className="px-4 py-2 bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-700 hover:to-amber-700 text-white font-semibold text-xs rounded-lg transition shadow flex items-center gap-1.5"
+                    >
+                      <span>✏️</span>
+                      <span>Ajustar Proposta e Reenviar</span>
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

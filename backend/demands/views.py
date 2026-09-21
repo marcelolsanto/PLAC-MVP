@@ -17,6 +17,13 @@ class DemandViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
 
+    def perform_update(self, serializer):
+        instance = serializer.instance
+        if instance.status == 'DEVOLVIDO_AJUSTES':
+            serializer.save(status='AGUARDANDO_VALIDACAO', rejection_reason=None)
+        else:
+            serializer.save()
+
     @action(detail=True, methods=['post'])
     def approve(self, request, pk=None):
         demand = self.get_object()
