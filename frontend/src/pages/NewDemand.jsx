@@ -45,7 +45,12 @@ export default function NewDemand({ onDemandCreated, onCancel }) {
       await api.post('/demands/', formData);
       onDemandCreated();
     } catch (err) {
-      setError('Erro ao registrar necessidade de contratação.');
+      const apiMsg =
+        err.response?.data?.detail ||
+        (typeof err.response?.data === 'string' ? err.response?.data : null) ||
+        JSON.stringify(err.response?.data) ||
+        'Erro ao registrar necessidade de contratação.';
+      setError(`Falha ao salvar: ${apiMsg}`);
     } finally {
       setLoading(false);
     }
