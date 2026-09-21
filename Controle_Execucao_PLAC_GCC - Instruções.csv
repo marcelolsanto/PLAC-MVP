@@ -1,0 +1,24 @@
+,,
+,CONTROLE INTERNO DE EXECUÇÃO DO PLAC — GCC,
+,,
+,Para que serve,Instrumento interno da GCC para monitorar a execução do PLAC e apurar os indicadores do Anexo IV da Diretriz. Não integra a Diretriz e pode ser alterado pela GCC a qualquer tempo.
+,,
+,Rotina de alimentação,
+,Aba Execução,"Uma linha por processo de contratação, aberta quando o processo chega à GCC. As datas são registradas ao longo da tramitação."
+,Aba Alterações,Uma linha por alteração do PLAC aprovada em REDIR. Registre no mesmo dia da deliberação: este dado não pode ser reconstruído depois.
+,Aba Painel,Informe o período e os dois parâmetros em amarelo. Os indicadores são calculados automaticamente.
+,Periodicidade,"Apuração quadrimestral, com posições em 30/04, 31/08 e 31/12, para o Relatório Gerencial previsto no art. 46 da Diretriz."
+,,
+,Como os indicadores são calculados,
+,TEP (I),"Itens com data pretendida de assinatura no período que efetivamente foram assinados no período, dividido pelo total de itens com data pretendida no período."
+,IAC (II),"Processos que entraram na GCC até a data-limite do Calendário, dividido pelos processos que entraram no período."
+,ICNP (III),"Inclusões aprovadas no período (art. 34, I), divididas pelos itens do PLAC vigente ao final do período."
+,IAP (IV),"Todas as alterações aprovadas no período, divididas pelos itens do PLAC aprovado em novembro."
+,TMP (V),"Média de dias úteis entre a entrada na GCC e a assinatura, das contratações concluídas no período. Também apurado por forma de contratação."
+,Complementares,"Índice de devolução, tempo médio de saneamento pela área e tempo médio de análise jurídica. Explicam as causas dos desvios dos demais."
+,,
+,Cuidados,
+,Feriados,A aba Listas traz o calendário de feriados usado no cálculo de dias úteis. Confira e atualize a cada exercício.
+,Prazos do Anexo III,"A coluna de prazos da aba Listas reproduz o Anexo III da Diretriz. Se o Anexo for atualizado, atualize também esta lista."
+,Linhas de exemplo,As linhas em amarelo das abas Execução e Alterações são demonstrativas e devem ser excluídas antes do uso.
+,Leitura dos resultados,"As faixas de referência são preliminares. O primeiro exercício constitui a linha de base, e as metas serão fixadas pela DAFRI a partir do segundo ciclo."
