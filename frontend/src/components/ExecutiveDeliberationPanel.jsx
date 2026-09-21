@@ -36,6 +36,12 @@ export default function ExecutiveDeliberationPanel() {
     fetchQueue();
   }, []);
 
+  const openDafriModal = (demand) => {
+    setSelectedDemandDafri(demand);
+    setDafriOpinion(demand.dafri_opinion || '');
+    setDafriApproved(demand.dafri_opinion ? demand.dafri_approved : true);
+  };
+
   const handleDafriSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -156,23 +162,30 @@ export default function ExecutiveDeliberationPanel() {
                     </td>
                     <td className="px-4 py-3">
                       {d.dafri_opinion ? (
-                        <div className="text-xs">
+                        <div className="text-xs group relative">
                           <span className={d.dafri_approved ? 'text-emerald-400' : 'text-red-400'}>
                             {d.dafri_approved ? '✓ Favorável' : '✗ Desfavorável'}
                           </span>
                           <div className="text-slate-400 truncate max-w-xs" title={d.dafri_opinion}>
                             {d.dafri_opinion}
                           </div>
+                          <button
+                            onClick={() => openDafriModal(d)}
+                            className="mt-1 text-blue-400 hover:text-blue-300 underline text-xs"
+                          >
+                            Editar Parecer
+                          </button>
                         </div>
                       ) : (
                         <button
-                          onClick={() => setSelectedDemandDafri(d)}
+                          onClick={() => openDafriModal(d)}
                           className="text-xs bg-blue-600/20 text-blue-400 px-2 py-1 rounded hover:bg-blue-600/40"
                         >
                           Emitir Parecer
                         </button>
                       )}
                     </td>
+
                     <td className="px-4 py-3 text-right">
                       <button
                         onClick={() => setSelectedDemandReject(d)}
