@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const getBaseURL = () => {
+  if (typeof window !== 'undefined' && window.location) {
+    return `http://${window.location.hostname}:8085/api`;
+  }
+  return 'http://localhost:8085/api';
+};
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8085/api',
+  baseURL: getBaseURL(),
 });
 
 api.interceptors.request.use((config) => {
