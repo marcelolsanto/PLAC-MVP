@@ -210,17 +210,29 @@ from .models import PNCPItemCatalogo
 class CatmatSearchView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request):
+        from functools import reduce
+        import operator
         termo_original = request.query_params.get('q', '').strip()
         tipo_item = request.query_params.get('tipo', '').strip()
         if len(termo_original) < 3:
             return Response({'resultado': []})
+        
         termo_sem_acento = ''.join(c for c in unicodedata.normalize('NFD', termo_original) if unicodedata.category(c) != 'Mn')
-        queryset = PNCPItemCatalogo.objects.using('pncp').filter(
-            Q(descricao__icontains=termo_original) | Q(descricao__icontains=termo_sem_acento)
-        )
+        
+        stop_words = {'de', 'da', 'do', 'e', 'ou', 'para', 'com', 'sem', 'em'}
+        keywords = [kw for kw in termo_sem_acento.split() if kw.lower() not in stop_words]
+        
+        if not keywords:
+            return Response({'resultado': []})
+            
+        query = reduce(operator.and_, (Q(descricao__icontains=kw) | Q(codigo_item__icontains=kw) for kw in keywords))
+        
+        queryset = PNCPItemCatalogo.objects.using('pncp').filter(query)
+        
         if tipo_item in ['M', 'S']:
             queryset = queryset.filter(tipo=tipo_item)
-        queryset = queryset[:50]
+            
+        queryset = queryset[:20]
         resultado = [{'codigo': i.codigo_item, 'descricao': i.descricao, 'tipo': i.tipo} for i in queryset]
         return Response({'resultado': resultado})
 
