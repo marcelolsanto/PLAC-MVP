@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
+import AIDraftingModal from './AIDraftingModal';
 
 const columns = [
   { id: 'nova', title: 'Novas Demandas (Entrada)', color: 'bg-slate-700/50', border: 'border-slate-600', icon: '📥' },
@@ -12,6 +13,7 @@ const columns = [
 export default function GCCKanban() {
   const [demands, setDemands] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [aiModalDemand, setAiModalDemand] = useState(null);
 
   useEffect(() => {
     fetchDemands();
@@ -96,11 +98,18 @@ export default function GCCKanban() {
                     </div>
 
                     {/* Fake Progress bar based on column */}
-                    <div className="mt-3 w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
+                    <div className="mt-3 w-full bg-slate-900 rounded-full h-1.5 overflow-hidden mb-3">
                       <div 
                         className={`h-full ${col.id === 'nova' ? 'w-10 bg-slate-500' : col.id === 'planejamento' ? 'w-1/4 bg-blue-500' : col.id === 'juridico' ? 'w-2/4 bg-purple-500' : col.id === 'licitacao' ? 'w-3/4 bg-amber-500' : 'w-full bg-emerald-500'}`}
                       ></div>
                     </div>
+
+                    <button
+                      onClick={() => setAiModalDemand(demand)}
+                      className="w-full py-1.5 bg-indigo-600/10 hover:bg-indigo-600/30 text-indigo-400 border border-indigo-500/20 text-[10px] font-bold rounded transition text-center"
+                    >
+                      ✨ IA Copilot (ETP/TR)
+                    </button>
                   </div>
                 ))}
                 
@@ -113,6 +122,9 @@ export default function GCCKanban() {
             </div>
           ))}
         </div>
+      )}
+      {aiModalDemand && (
+        <AIDraftingModal demand={aiModalDemand} onClose={() => setAiModalDemand(null)} />
       )}
     </div>
   );

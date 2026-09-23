@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AIDraftingModal from './AIDraftingModal';
 
 export default function DemandList({ demands, onNewDemandClick, onEditDemandClick }) {
+  const [aiModalDemand, setAiModalDemand] = useState(null);
   const getPriorityBadge = (level, score) => {
     switch (level) {
       case 'ALTO':
@@ -103,7 +105,15 @@ export default function DemandList({ demands, onNewDemandClick, onEditDemandClic
                   <p className="text-xs text-slate-400">
                     Pretensão: {new Date(demand.intended_date).toLocaleDateString('pt-BR')}
                   </p>
-                  <div className="pt-1">{getStatusBadge(demand.status)}</div>
+                                    <div className="pt-1 flex items-center gap-2">
+                    {getStatusBadge(demand.status)}
+                    <button
+                      onClick={() => setAiModalDemand(demand)}
+                      className="px-2 py-1 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/30 text-[10px] font-bold rounded-md transition"
+                    >
+                      ✨ Assistente IA (ETP/TR)
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -130,6 +140,9 @@ export default function DemandList({ demands, onNewDemandClick, onEditDemandClic
             </div>
           ))}
         </div>
+      )}
+      {aiModalDemand && (
+        <AIDraftingModal demand={aiModalDemand} onClose={() => setAiModalDemand(null)} />
       )}
     </div>
   );
