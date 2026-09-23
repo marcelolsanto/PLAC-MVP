@@ -5,6 +5,8 @@ import DemandList from '../components/DemandList';
 import NewDemand from './NewDemand';
 import DirectorApprovalPanel from '../components/DirectorApprovalPanel';
 import GCCPanel from '../components/GCCPanel';
+import GCCKanban from '../components/GCCKanban';
+import GCCKanban from '../components/GCCKanban';
 import ExecutiveDashboard from '../components/ExecutiveDashboard';
 import ExecutiveDeliberationPanel from '../components/ExecutiveDeliberationPanel';
 
@@ -131,10 +133,27 @@ export default function Dashboard() {
                 : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
             }`}
           >
-            <span>📅</span>
-            <span className="hidden sm:inline">Consolidação GCC</span>
-            <span className="sm:hidden">GCC</span>
+            <span>🏢</span>
+            <span className="hidden sm:inline">Consolidação SLA</span>
+            <span className="sm:hidden">SLA</span>
             <span className="hidden md:inline text-slate-500 text-[10px]">(UC03)</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveTab('kanban');
+              setShowNewDemand(false);
+            }}
+            className={`flex-1 flex items-center justify-center gap-1.5 text-xs font-medium py-3 px-2 border-b-2 transition ${
+              activeTab === 'kanban'
+                ? 'border-blue-500 text-blue-400 bg-blue-500/5'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+            }`}
+          >
+            <span>📊</span>
+            <span className="hidden sm:inline">Kanban GCC</span>
+            <span className="sm:hidden">Kanban</span>
+            <span className="hidden md:inline text-slate-500 text-[10px]">(Execução)</span>
           </button>
 
           <button
@@ -162,6 +181,8 @@ export default function Dashboard() {
           <ExecutiveDashboard />
         ) : activeTab === 'gcc' ? (
           <GCCPanel />
+        ) : activeTab === 'kanban' ? (
+          <GCCKanban />
         ) : activeTab === 'approval' ? (
           <DirectorApprovalPanel />
         ) : activeTab === 'deliberation' ? (
