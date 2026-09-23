@@ -112,5 +112,5 @@ class PNCPItemCatalogo(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'compras_itemcatalogolocal'
+        db_table = 'compras_item_catalogo_local'
 
