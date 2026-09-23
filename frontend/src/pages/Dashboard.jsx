@@ -6,7 +6,6 @@ import NewDemand from './NewDemand';
 import DirectorApprovalPanel from '../components/DirectorApprovalPanel';
 import GCCPanel from '../components/GCCPanel';
 import GCCKanban from '../components/GCCKanban';
-import GCCKanban from '../components/GCCKanban';
 import ExecutiveDashboard from '../components/ExecutiveDashboard';
 import ExecutiveDeliberationPanel from '../components/ExecutiveDeliberationPanel';
 
