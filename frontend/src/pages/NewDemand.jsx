@@ -122,7 +122,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* ═══ BLOCO 1 — Identificação ═══ */}
-        <div className="border border-slate-700 rounded-lg overflow-hidden">
+        <div className="border border-slate-700 rounded-lg">
           <BlockHeader num={1} icon="🏢" title="Bloco 1 — Identificação" color="bg-slate-700/50 text-blue-300" />
           {openBlocks[1] && (
             <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -162,7 +162,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
         </div>
 
         {/* ═══ BLOCO 2 — Objeto ═══ */}
-        <div className="border border-slate-700 rounded-lg overflow-hidden">
+        <div className="border border-slate-700 rounded-lg">
           <BlockHeader num={2} icon="📦" title="Bloco 2 — Objeto" color="bg-slate-700/50 text-emerald-300" />
           {openBlocks[2] && (
             <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -211,7 +211,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
         </div>
 
         {/* ═══ BLOCO 3 — Vinculações ═══ */}
-        <div className="border border-slate-700 rounded-lg overflow-hidden">
+        <div className="border border-slate-700 rounded-lg">
           <BlockHeader num={3} icon="🔗" title="Bloco 3 — Vinculações (opcional)" color="bg-slate-700/50 text-purple-300" />
           {openBlocks[3] && (
             <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -244,7 +244,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
         </div>
 
         {/* ═══ BLOCO 4 — Valores ═══ */}
-        <div className="border border-slate-700 rounded-lg overflow-hidden">
+        <div className="border border-slate-700 rounded-lg">
           <BlockHeader num={4} icon="💰" title="Bloco 4 — Valores" color="bg-slate-700/50 text-amber-300" />
           {openBlocks[4] && (
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -272,7 +272,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
         </div>
 
         {/* ═══ BLOCO 5 — Prazos e Priorização ═══ */}
-        <div className="border border-slate-700 rounded-lg overflow-hidden">
+        <div className="border border-slate-700 rounded-lg">
           <BlockHeader num={5} icon="⚡" title="Bloco 5 — Prazos e Priorização" color="bg-slate-700/50 text-red-300" />
           {openBlocks[5] && (
             <div className="p-4 space-y-4">
