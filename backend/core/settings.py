@@ -67,6 +67,14 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASS', 'plac_password'),
         'HOST': os.environ.get('DB_HOST', 'localhost'),
         'PORT': os.environ.get('DB_PORT', '5432'),
+    },
+    'pncp': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pncp_db',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': 'pncp_db',
+        'PORT': '5432',
     }
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from '../services/api';
+import CatmatAutocomplete from '../components/CatmatAutocomplete';
 
 export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
   const isEditing = Boolean(demandToEdit);
@@ -180,7 +181,12 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
               </div>
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1">CATMAT/CATSER *</label>
-                <input type="text" value={formData.catmat_code} onChange={(e) => setFormData({...formData, catmat_code: e.target.value})} className={inputCls('catmat_code')} placeholder="Ex: CATSER 3220" />
+                <CatmatAutocomplete
+                  value={formData.catmat_code}
+                  onChange={(val) => setFormData({...formData, catmat_code: val})}
+                  error={!!errors.catmat_code}
+                  itemType={formData.item_type}
+                />
                 {errors.catmat_code && <p className="text-red-400 text-xs mt-1">{errors.catmat_code}</p>}
               </div>
               <div>

@@ -201,3 +201,26 @@ class DemandViewSet(viewsets.ModelViewSet):
         demands = Demand.objects.filter(status='CONSOLIDADO').order_by('-created_at')
         return Response(DemandSerializer(demands, many=True).data)
 
+
+from rest_framework.views import APIView
+from django.db.models import Q
+import unicodedata
+from .models import PNCPItemCatalogo
+
+class CatmatSearchView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, request):
+        termo_original = request.query_params.get('q', '').strip()
+        tipo_item = request.query_params.get('tipo', '').strip()
+        if len(termo_original) < 3:
+            return Response({'resultado': []})
+        termo_sem_acento = ''.join(c for c in unicodedata.normalize('NFD', termo_original) if unicodedata.category(c) != 'Mn')
+        queryset = PNCPItemCatalogo.objects.using('pncp').filter(
+            Q(descricao__icontains=termo_original) | Q(descricao__icontains=termo_sem_acento)
+        )
+        if tipo_item in ['M', 'S']:
+            queryset = queryset.filter(tipo=tipo_item)
+        queryset = queryset[:50]
+        resultado = [{'codigo': i.codigo_item, 'descricao': i.descricao, 'tipo': i.tipo} for i in queryset]
+        return Response({'resultado': resultado})
+

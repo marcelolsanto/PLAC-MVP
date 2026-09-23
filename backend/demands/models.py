@@ -103,3 +103,14 @@ class Demand(models.Model):
 
     def __str__(self):
         return f"Demanda #{self.id} - {self.description[:40]} ({self.priority_level})"
+
+class PNCPItemCatalogo(models.Model):
+    codigo_item = models.CharField(max_length=20, db_column='codigo_item', primary_key=True)
+    descricao = models.CharField(max_length=1000, db_column='descricao')
+    tipo = models.CharField(max_length=1, db_column='tipo')
+    codigo_pai = models.CharField(max_length=20, null=True, blank=True, db_column='codigo_pai')
+
+    class Meta:
+        managed = False
+        db_table = 'compras_itemcatalogolocal'
+

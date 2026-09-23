@@ -32,6 +32,9 @@ services:
       - DB_NAME=plac_db
       - DB_USER=plac_user
       - DB_PASS=plac_password
+    networks:
+      - default
+      - pncp_network
 
   frontend:
     build: ./frontend
@@ -48,3 +51,9 @@ services:
 
 volumes:
   postgres_data:
+
+networks:
+  default:
+  pncp_network:
+    external: true
+    name: pncp_link_default
