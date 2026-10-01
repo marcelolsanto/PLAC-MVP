@@ -117,7 +117,7 @@ const LevantamentoCard = ({ demand, onAvancar }) => {
   const temSiga = tel.tem_siga ?? false;
 
   return (
-    <div className="bg-slate-800/90 border border-slate-600/60 rounded-xl shadow-lg flex flex-col min-w-[440px] w-[460px] flex-shrink-0 overflow-hidden hover:border-slate-500/80 transition-all duration-200">
+    <div className="bg-slate-800/90 border border-slate-600/60 rounded-xl shadow-lg flex flex-col w-full flex-shrink-0 overflow-hidden hover:border-slate-500/80 transition-all duration-200">
 
       {/* ── Cabeçalho ── */}
       <div className="bg-gradient-to-r from-slate-700/60 to-slate-800/40 px-4 py-3 border-b border-slate-700/50">
@@ -303,7 +303,7 @@ const SimpleCard = ({ demand }) => (
 );
 
 // ─── Coluna ───────────────────────────────────────────────────────────────────
-const KanbanColuna = ({ titulo, emoji, cor, cards, renderCard, isFirst }) => {
+const KanbanColuna = ({ titulo, emoji, cor, cards, renderCard }) => {
   const colorMap = {
     blue:    "from-blue-900/40 to-slate-900/20 border-blue-700/40",
     violet:  "from-violet-900/40 to-slate-900/20 border-violet-700/40",
@@ -321,15 +321,15 @@ const KanbanColuna = ({ titulo, emoji, cor, cards, renderCard, isFirst }) => {
     red:     "text-red-300 border-red-700/50",
   };
   return (
-    <div className={`flex flex-col rounded-xl border bg-gradient-to-b ${colorMap[cor]} ${isFirst ? "min-w-[520px]" : "min-w-[280px]"} flex-shrink-0`}>
+    <div className={`flex flex-col rounded-xl border bg-gradient-to-b ${colorMap[cor]} min-w-[420px] w-[420px] flex-shrink-0`}>
       <div className={`px-4 py-3 border-b ${headerMap[cor]} flex items-center justify-between`}>
-        <span className="text-[13px] font-bold tracking-tight">{emoji} {titulo}</span>
-        <span className="text-[11px] font-bold bg-slate-800/60 border border-slate-700/60 text-slate-300 rounded-full w-6 h-6 flex items-center justify-center">{cards.length}</span>
+        <span className="text-[14px] font-bold tracking-tight">{emoji} {titulo}</span>
+        <span className="text-[12px] font-bold bg-slate-800/60 border border-slate-700/60 text-slate-300 rounded-full px-2.5 py-0.5 flex items-center justify-center">{cards.length}</span>
       </div>
-      <div className={`flex-1 p-3 ${isFirst ? "overflow-x-auto overflow-y-auto flex flex-row gap-3" : "overflow-y-auto flex flex-col gap-3"} max-h-[68vh]`}>
+      <div className="flex-1 p-3 overflow-y-auto overflow-x-hidden flex flex-col gap-4 max-h-[72vh]">
         {cards.length === 0
-          ? <p className="text-[11px] text-slate-600 italic text-center py-4 w-full">Nenhuma demanda</p>
-          : cards.map((d) => <div key={d.id}>{renderCard(d)}</div>)
+          ? <p className="text-[12px] text-slate-600 italic text-center py-6 w-full">Nenhuma demanda nesta fase</p>
+          : cards.map((d) => <div key={d.id} className="w-full">{renderCard(d)}</div>)
         }
       </div>
     </div>
