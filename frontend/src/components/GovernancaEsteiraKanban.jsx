@@ -321,7 +321,10 @@ const KanbanColuna = ({ titulo, emoji, cor, cards, renderCard }) => {
     red:     "text-red-300 border-red-700/50",
   };
   return (
-    <div className={`flex flex-col rounded-xl border bg-gradient-to-b ${colorMap[cor]} min-w-[420px] w-[420px] flex-shrink-0`}>
+    <div 
+      className={`flex flex-col rounded-xl border bg-gradient-to-b ${colorMap[cor]} flex-shrink-0`}
+      style={{ minWidth: '420px', width: '420px' }}
+    >
       <div className={`px-4 py-3 border-b ${headerMap[cor]} flex items-center justify-between`}>
         <span className="text-[14px] font-bold tracking-tight">{emoji} {titulo}</span>
         <span className="text-[12px] font-bold bg-slate-800/60 border border-slate-700/60 text-slate-300 rounded-full px-2.5 py-0.5 flex items-center justify-center">{cards.length}</span>
