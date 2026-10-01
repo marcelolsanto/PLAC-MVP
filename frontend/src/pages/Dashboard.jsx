@@ -258,22 +258,6 @@ export default function Dashboard() {
 
                   <button
                     type="button"
-                    onClick={() => { setSubTab('governanca_kanban'); setShowNewDemand(false); }}
-                    className={`flex items-center gap-2 py-3 px-3 text-xs font-bold border-b-2 transition whitespace-nowrap ${
-                      subTab === 'governanca_kanban'
-                        ? 'border-cyan-500 text-cyan-400 bg-cyan-500/5'
-                        : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                    }`}
-                  >
-                    <span>📋</span>
-                    <span>Esteira de Governança</span>
-                    <span className="text-[10px] text-cyan-400 font-mono font-bold bg-cyan-950/60 px-1.5 py-0.5 rounded border border-cyan-500/30">
-                      Kanban + SIGA
-                    </span>
-                  </button>
-
-                  <button
-                    type="button"
                     onClick={() => { setSubTab('consolidacao'); setShowNewDemand(false); }}
                     className={`flex items-center gap-2 py-3 px-3 text-xs font-bold border-b-2 transition whitespace-nowrap ${
                       subTab === 'consolidacao'
@@ -281,9 +265,11 @@ export default function Dashboard() {
                         : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                     }`}
                   >
-                    <span>🏛️</span>
-                    <span>Fase 3: Consolidação GCC &amp; REDIR</span>
-                    <span className="text-[10px] text-indigo-400/80 font-mono font-normal">(Esteira Kanban)</span>
+                    <span>📋</span>
+                    <span>Fase 3: Esteira Kanban Integrada</span>
+                    <span className="text-[10px] text-cyan-400 font-mono font-bold bg-cyan-950/60 px-1.5 py-0.5 rounded border border-cyan-500/30">
+                      Kanban + SIGA
+                    </span>
                   </button>
 
                   <button
@@ -504,14 +490,10 @@ export default function Dashboard() {
               <DirectorApprovalPanel />
             )}
 
-            {macroFase === 'PLANEJAMENTO' && subTab === 'governanca_kanban' && (
+            {macroFase === 'PLANEJAMENTO' && subTab === 'consolidacao' && (
               <div className="h-[calc(100vh-140px)] p-4">
                 <GovernancaEsteiraKanban />
               </div>
-            )}
-
-            {macroFase === 'PLANEJAMENTO' && subTab === 'consolidacao' && (
-              <PlanejamentoEsteiraKanban />
             )}
 
             {macroFase === 'PLANEJAMENTO' && subTab === 'indicadores_minuta' && (
