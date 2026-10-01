@@ -2,6 +2,20 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 
 export default function DirectorApprovalPanel() {
+  const getModalidadeInfo = (tipo) => {
+    const t = String(tipo || '').toUpperCase();
+    if (t.includes('CURSO')) return { nome: 'Inexigibilidade Cursos', responsavel: 'Franciele / Roberta' };
+    if (t.includes('COMPARTILH')) return { nome: 'Inexigibilidade Compartilhamento', responsavel: 'Vanessa / Thorgarma' };
+    if (t.includes('LOCA')) return { nome: 'Dispensa Locação', responsavel: 'Vanessa / Thorgarma' };
+    if (t.includes('ENERGIA')) return { nome: 'Dispensa Energia', responsavel: 'Vanessa / Thorgarma' };
+    if (t.includes('ELET')) return { nome: 'Dispensa Eletrônica Comprasnet', responsavel: 'Franciele / Roberta' };
+    if (t.includes('BAIXO')) return { nome: 'Dispensa Baixo Valor', responsavel: 'Marcus / Layllah' };
+    if (t.includes('INEX')) return { nome: 'Inexigibilidade Geral', responsavel: 'Marcus / Layllah' };
+    if (t.includes('AFAST')) return { nome: 'Afastamento de Licitação', responsavel: 'Rosilda / Pedro' };
+    if (t.includes('PREG')) return { nome: 'Pregão Eletrônico', responsavel: 'Marcus / Layllah' };
+    return { nome: 'Dispensa Tradicional Geral', responsavel: 'Marcus / Layllah' };
+  };
+
   const [pendingDemands, setPendingDemands] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedDemand, setSelectedDemand] = useState(null);
@@ -26,7 +40,8 @@ export default function DirectorApprovalPanel() {
     fetchPending();
   }, []);
 
-  const handleApprove = async (id) => {
+  const handleApprove = async (demandOrId) => {
+    const id = typeof demandOrId === 'object' ? demandOrId.id : demandOrId;
     try {
       setActionLoading(true);
       await api.post(`/demands/${id}/approve/`);
@@ -34,7 +49,8 @@ export default function DirectorApprovalPanel() {
       setSelectedDemand(null);
       fetchPending();
     } catch (err) {
-      alert('Erro ao aprovar demanda.');
+      const errMsg = err.response?.data?.error || 'Erro ao aprovar demanda.';
+      alert(errMsg);
     } finally {
       setActionLoading(false);
     }
@@ -89,11 +105,31 @@ export default function DirectorApprovalPanel() {
               className="p-4 bg-slate-800 border border-slate-700 rounded-xl hover:border-slate-600 transition flex items-center justify-between"
             >
               <div>
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <span className="text-xs font-mono bg-slate-900 text-slate-300 px-2 py-0.5 rounded">
                     #{demand.id}
                   </span>
+                  {demand.codigo_rastreio_plac && (
+                    <span className="text-xs font-mono font-bold bg-blue-950 text-blue-300 px-2 py-0.5 rounded border border-blue-800">
+                      🏷️ {demand.codigo_rastreio_plac}
+                    </span>
+                  )}
+                  {demand.siga_process_number ? (
+                    <span className="text-xs font-mono bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-800">
+                      📁 {demand.siga_process_number}
+                    </span>
+                  ) : (
+                    <span className="text-xs font-semibold bg-rose-950 text-rose-300 px-2 py-0.5 rounded border border-rose-800">
+                      ⚠️ SIGA Não Autuado
+                    </span>
+                  )}
                   <span className="text-xs text-slate-400 font-semibold uppercase">{demand.item_type}</span>
+                  <span className="text-xs bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded border border-indigo-500/30 font-medium">
+                    📋 {getModalidadeInfo(demand.procurement_type).nome}
+                  </span>
+                  <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30 font-medium">
+                    👤 GCC: {getModalidadeInfo(demand.procurement_type).responsavel}
+                  </span>
                   <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded border border-blue-500/30">
                     Prioridade: {demand.priority_level} ({demand.priority_score} pts)
                   </span>
@@ -205,20 +241,36 @@ export default function DirectorApprovalPanel() {
                 </div>
               </div>
             ) : (
-              <div className="flex items-center justify-end gap-3 pt-2 border-t border-slate-700">
-                <button
-                  onClick={() => setIsRejecting(true)}
-                  className="px-4 py-2 bg-amber-600/20 text-amber-300 border border-amber-500/40 hover:bg-amber-600/30 text-sm font-medium rounded-lg transition"
-                >
-                  Devolver para Ajustes
-                </button>
-                <button
-                  disabled={actionLoading}
-                  onClick={() => handleApprove(selectedDemand.id)}
-                  className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition shadow"
-                >
-                  {actionLoading ? 'Processando...' : '✓ Validar Demanda'}
-                </button>
+              <div className="flex flex-col gap-3 pt-2 border-t border-slate-700">
+                {!selectedDemand.siga_process_number && (
+                  <div className="p-3 bg-rose-500/10 border border-rose-500/40 rounded-xl text-rose-300 text-xs flex items-start gap-2">
+                    <span className="text-base">⛔</span>
+                    <div>
+                      <strong className="block text-rose-200 font-bold mb-0.5">Aprovação Bloqueada pela Governança do PLAC:</strong>
+                      A área demandante deve autuar o processo administrativo no SIGA, juntar a nossa <strong>Certidão do PLAC</strong> ({selectedDemand.codigo_rastreio_plac || '#' + selectedDemand.id}) como Peça nº 01 e vincular o número TLB-PRO antes do julgamento estratégico.
+                    </div>
+                  </div>
+                )}
+                <div className="flex items-center justify-end gap-3">
+                  <button
+                    onClick={() => setIsRejecting(true)}
+                    className="px-4 py-2 bg-amber-600/20 text-amber-300 border border-amber-500/40 hover:bg-amber-600/30 text-sm font-medium rounded-lg transition"
+                  >
+                    Devolver para Ajustes
+                  </button>
+                  <button
+                    disabled={actionLoading || !selectedDemand.siga_process_number}
+                    onClick={() => handleApprove(selectedDemand.id)}
+                    className={`px-5 py-2 text-sm font-medium rounded-lg transition shadow ${
+                      !selectedDemand.siga_process_number
+                        ? 'bg-slate-700 text-slate-500 cursor-not-allowed border border-slate-600'
+                        : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                    }`}
+                    title={!selectedDemand.siga_process_number ? 'Bloqueado: Requer processo SIGA vinculado' : 'Validar demanda e enviar à GCC'}
+                  >
+                    {actionLoading ? 'Processando...' : !selectedDemand.siga_process_number ? '🔒 Bloqueado (Sem SIGA)' : '✓ Validar Demanda'}
+                  </button>
+                </div>
               </div>
             )}
           </div>

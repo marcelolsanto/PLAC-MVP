@@ -2,6 +2,20 @@ import React, { useState } from 'react';
 import api from '../services/api';
 import CatmatAutocomplete from '../components/CatmatAutocomplete';
 
+// 10 Modalidades Oficiais e Responsáveis extraídos diretamente de 'FLUXOS DE COMPRAS COM RESPONSÁVEIS GCC.xlsx'
+const MODALIDADES_OFICIAIS_GCC = [
+  { id: 'PREGAO', nome: 'Pregão Eletrônico (Licitação Ampla)', grupo: 'Licitação Geral (Lei 13.303/2016)', responsavel: 'Marcus / Layllah', dias_real: 31, dias_planilha: 144 },
+  { id: 'DISPENSA_TRADICIONAL', nome: 'Dispensa Tradicional Geral (Art. 29 c/c 73)', grupo: 'Dispensas de Licitação', responsavel: 'Marcus / Layllah', dias_real: 15, dias_planilha: 59 },
+  { id: 'DISPENSA_BAIXO_VALOR', nome: 'Dispensa Tradicional Baixo Valor (Inc. I e II)', grupo: 'Dispensas de Licitação', responsavel: 'Marcus / Layllah', dias_real: 11, dias_planilha: 60 },
+  { id: 'DISPENSA_ELETRONICA', nome: 'Dispensa Eletrônica Comprasnet (IN 67/2021)', grupo: 'Dispensas de Licitação', responsavel: 'Franciele / Roberta', dias_real: 15, dias_planilha: 82 },
+  { id: 'DISPENSA_LOCACAO', nome: 'Dispensa para Locação de Imóveis/PoPs (Parecer Padrão)', grupo: 'Dispensas de Licitação', responsavel: 'Vanessa / Thorgarma', dias_real: 20, dias_planilha: 52 },
+  { id: 'DISPENSA_ENERGIA', nome: 'Dispensa para Energia Elétrica (Parecer Padrão)', grupo: 'Dispensas de Licitação', responsavel: 'Vanessa / Thorgarma', dias_real: 17, dias_planilha: 48 },
+  { id: 'INEXIGIBILIDADE_GERAL', nome: 'Inexigibilidade Geral / Fornecedor Exclusivo (Art. 30)', grupo: 'Inexigibilidades', responsavel: 'Marcus / Layllah', dias_real: 25, dias_planilha: 89 },
+  { id: 'INEXIGIBILIDADE_CURSOS', nome: 'Inexigibilidade Capacitação e Cursos (Parecer Padrão)', grupo: 'Inexigibilidades', responsavel: 'Franciele / Roberta', dias_real: 9, dias_planilha: 22 },
+  { id: 'INEXIGIBILIDADE_COMPARTILHAMENTO', nome: 'Inexigibilidade Compartilhamento de Infraestrutura', grupo: 'Inexigibilidades', responsavel: 'Vanessa / Thorgarma', dias_real: 28, dias_planilha: 72 },
+  { id: 'AFASTAMENTO', nome: 'Contratação Direta por Afastamento de Licitação (Prática nº 88)', grupo: 'Oportunidade Comercial', responsavel: 'Rosilda / Pedro', dias_real: 26, dias_planilha: 90 },
+];
+
 export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
   const isEditing = Boolean(demandToEdit);
 
@@ -31,6 +45,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
     estimated_value: demandToEdit?.estimated_value || '',
     estimated_source: demandToEdit?.estimated_source || '',
     // Bloco 5
+    procurement_type: demandToEdit?.procurement_type || 'PREGAO',
     intended_date: demandToEdit?.intended_date || '',
     f1: demandToEdit?.f1 || 1,
     f2: demandToEdit?.f2 || 1,
@@ -44,6 +59,8 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
   const [errors, setErrors] = useState({});
   const [openBlocks, setOpenBlocks] = useState({ 1: true, 2: true, 3: false, 4: true, 5: true });
 
+  const modalidadeSelecionada = MODALIDADES_OFICIAIS_GCC.find(m => m.id === formData.procurement_type) || MODALIDADES_OFICIAIS_GCC[0];
+
   const toggleBlock = (n) => setOpenBlocks(prev => ({ ...prev, [n]: !prev[n] }));
 
   const validate = () => {
@@ -53,6 +70,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
     if (!formData.estimated_value || Number(formData.estimated_value) <= 0) errs.estimated_value = 'Valor inválido';
     if (!formData.intended_date) errs.intended_date = 'Obrigatório';
     if (!formData.strategic_alignment) errs.strategic_alignment = 'Obrigatório';
+    if (!formData.procurement_type) errs.procurement_type = 'Obrigatório';
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -110,10 +128,14 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
 
       <div className="flex items-center justify-between pb-4 border-b border-slate-700 mb-2">
         <div>
-          <h2 className="text-xl font-bold">Registro de Necessidade — PLAC 2027</h2>
-          <p className="text-slate-400 text-xs mt-0.5">Diretriz nº ___/2026, Anexo I — Levantamento de Necessidades</p>
+          <h2 className="text-xl font-bold">Fase 1: Registro de Necessidades — PLAC 2027</h2>
+          <p className="text-slate-400 text-xs mt-0.5">Levantamento de Necessidades alinhado às 10 esteiras da GCC</p>
         </div>
-        <button type="button" onClick={onCancel} className="text-xs bg-slate-700 hover:bg-slate-600 text-slate-300 px-3 py-1.5 rounded transition">Voltar</button>
+        <div className="flex items-center gap-2">
+          <button type="button" onClick={onCancel} className="text-xs bg-slate-700 hover:bg-slate-600 text-slate-300 px-3 py-1.5 rounded transition">
+            Voltar
+          </button>
+        </div>
       </div>
 
       {error && (
@@ -123,11 +145,11 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* ═══ BLOCO 1 — Identificação ═══ */}
         <div className="border border-slate-700 rounded-lg">
-          <BlockHeader num={1} icon="🏢" title="Bloco 1 — Identificação" color="bg-slate-700/50 text-blue-300" />
+          <BlockHeader num={1} icon="🏢" title="Bloco 1 — Identificação da Área Requisitante" color="bg-slate-700/50 text-blue-300" />
           {openBlocks[1] && (
             <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Diretoria</label>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Diretoria *</label>
                 <select value={formData.directorate} onChange={(e) => setFormData({...formData, directorate: e.target.value})} className={inputCls('directorate')}>
                   <option value="">Selecione...</option>
                   <option value="1000 - Presidência">1000 - Presidência</option>
@@ -137,7 +159,7 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Gerência Demandante</label>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Gerência Demandante *</label>
                 <input type="text" value={formData.management_unit} onChange={(e) => setFormData({...formData, management_unit: e.target.value})} className={inputCls('management_unit')} placeholder="Ex: 3600 - Gerência de Manutenção" />
               </div>
               <div>
@@ -151,10 +173,9 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1">Natureza *</label>
                 <select value={formData.nature_type} onChange={(e) => setFormData({...formData, nature_type: e.target.value})} className={inputCls('nature_type')}>
-                  <option value="NOVA">Nova contratação</option>
-                  <option value="PRORROGACAO">Prorrogação</option>
-                  <option value="ADITIVO">Aditivo</option>
-                  <option value="REAJUSTE">Reajuste</option>
+                  <option value="NOVA">Nova Contratação</option>
+                  <option value="RENOVACAO">Renovação Contratual</option>
+                  <option value="EXPANSAO">Expansão de Capacidade</option>
                 </select>
               </div>
             </div>
@@ -163,24 +184,25 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
 
         {/* ═══ BLOCO 2 — Objeto ═══ */}
         <div className="border border-slate-700 rounded-lg">
-          <BlockHeader num={2} icon="📦" title="Bloco 2 — Objeto" color="bg-slate-700/50 text-emerald-300" />
+          <BlockHeader num={2} icon="📦" title="Bloco 2 — Objeto e Especificação Técnica" color="bg-slate-700/50 text-emerald-300" />
           {openBlocks[2] && (
             <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="md:col-span-2">
-                <label className="block text-xs font-medium text-slate-400 mb-1">Descrição do Objeto *</label>
-                <textarea rows="3" value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className={inputCls('description')} placeholder="Ex: Manutenção preventiva e corretiva de grupos geradores..." />
+                <label className="block text-xs font-medium text-slate-400 mb-1">Descrição Clara do Objeto *</label>
+                <textarea rows="3" value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className={inputCls('description')} placeholder="Descreva sucintamente o bem ou serviço demandado..." />
                 {errors.description && <p className="text-red-400 text-xs mt-1">{errors.description}</p>}
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Tipo do Objeto *</label>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Tipo de Objeto</label>
                 <select value={formData.item_type} onChange={(e) => setFormData({...formData, item_type: e.target.value})} className={inputCls('item_type')}>
-                  <option value="BEM">Bem</option>
+                  <option value="BEM">Bem / Material</option>
                   <option value="SERVICO">Serviço</option>
-                  <option value="TI">Tecnologia da Informação (TI)</option>
+                  <option value="OBRA">Obra / Engenharia</option>
+                  <option value="LOCACAO">Locação</option>
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">CATMAT/CATSER *</label>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Código do Catálogo (CATMAT/CATSER) *</label>
                 <CatmatAutocomplete
                   value={formData.catmat_code}
                   onChange={(val) => setFormData({...formData, catmat_code: val})}
@@ -194,12 +216,12 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
                 <input type="number" min="1" value={formData.quantity} onChange={(e) => setFormData({...formData, quantity: parseInt(e.target.value) || 1})} className={inputCls('quantity')} />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Unidade</label>
-                <input type="text" value={formData.unit} onChange={(e) => setFormData({...formData, unit: e.target.value})} className={inputCls('unit')} placeholder="Ex: Serviço anual, Unidade, Lote" />
+                <label className="block text-xs font-medium text-slate-400 mb-1">Unidade de Medida</label>
+                <input type="text" value={formData.unit} onChange={(e) => setFormData({...formData, unit: e.target.value})} className={inputCls('unit')} placeholder="Ex: Mês, Serviço anual, Unidade" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-xs font-medium text-slate-400 mb-1">Justificativa da Necessidade</label>
-                <textarea rows="2" value={formData.justification} onChange={(e) => setFormData({...formData, justification: e.target.value})} className={inputCls('justification')} placeholder="Ex: Contrato vigente encerra em 31/08/2027..." />
+                <textarea rows="2" value={formData.justification} onChange={(e) => setFormData({...formData, justification: e.target.value})} className={inputCls('justification')} placeholder="Justifique a necessidade operacional e de negócio..." />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-xs font-medium text-slate-400 mb-1">Objetivo Estratégico do PEI *</label>
@@ -223,29 +245,13 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
                 <label className="block text-xs font-medium text-slate-400 mb-1">Depende do Item Nº</label>
                 <input type="text" value={formData.depends_on_item} onChange={(e) => setFormData({...formData, depends_on_item: e.target.value})} className={inputCls('depends_on_item')} placeholder="Nº do item" />
               </div>
-              <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Projeto ou Política Pública</label>
-                <input type="text" value={formData.public_policy} onChange={(e) => setFormData({...formData, public_policy: e.target.value})} className={inputCls('public_policy')} placeholder="Ex: Programa de continuidade operacional" />
-              </div>
-              <div className="flex items-center gap-4 pt-5">
-                <label className="flex items-center space-x-2 text-sm text-slate-300 cursor-pointer">
-                  <input type="checkbox" checked={formData.is_confidential} onChange={(e) => setFormData({...formData, is_confidential: e.target.checked})} className="rounded bg-slate-900 border-slate-700" />
-                  <span>Sujeito a Sigilo</span>
-                </label>
-              </div>
-              {formData.is_confidential && (
-                <div className="md:col-span-2">
-                  <label className="block text-xs font-medium text-slate-400 mb-1">Fundamento do Sigilo</label>
-                  <input type="text" value={formData.confidentiality_basis} onChange={(e) => setFormData({...formData, confidentiality_basis: e.target.value})} className={inputCls('confidentiality_basis')} placeholder="Base legal ou justificativa" />
-                </div>
-              )}
             </div>
           )}
         </div>
 
-        {/* ═══ BLOCO 4 — Valores ═══ */}
+        {/* ═══ BLOCO 4 — Valores e Orçamento ═══ */}
         <div className="border border-slate-700 rounded-lg">
-          <BlockHeader num={4} icon="💰" title="Bloco 4 — Valores" color="bg-slate-700/50 text-amber-300" />
+          <BlockHeader num={4} icon="💰" title="Bloco 4 — Estimativa Orçamentária" color="bg-slate-700/50 text-amber-300" />
           {openBlocks[4] && (
             <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
@@ -254,43 +260,147 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
                   <option value="">Selecione...</option>
                   <option value="PDG">PDG - Programa de Dispêndios Globais</option>
                   <option value="LOA">LOA - Lei Orçamentária Anual</option>
-                  <option value="EMENDA">Emenda Parlamentar</option>
                   <option value="OUTRO">Outro</option>
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Valor Estimado 2027 (R$) *</label>
+                <label className="block text-xs font-medium text-slate-400 mb-1">Valor Estimado (R$) *</label>
                 <input type="number" step="0.01" value={formData.estimated_value} onChange={(e) => setFormData({...formData, estimated_value: e.target.value})} className={inputCls('estimated_value')} placeholder="0,00" />
                 {errors.estimated_value && <p className="text-red-400 text-xs mt-1">{errors.estimated_value}</p>}
               </div>
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1">Fonte da Estimativa</label>
-                <input type="text" value={formData.estimated_source} onChange={(e) => setFormData({...formData, estimated_source: e.target.value})} className={inputCls('estimated_source')} placeholder="Ex: Contrato vigente reajustado pelo IPCA" />
+                <input type="text" value={formData.estimated_source} onChange={(e) => setFormData({...formData, estimated_source: e.target.value})} className={inputCls('estimated_source')} placeholder="Ex: Painel de Preços, Contrato vigente" />
               </div>
             </div>
           )}
         </div>
 
-        {/* ═══ BLOCO 5 — Prazos e Priorização ═══ */}
+        {/* ═══ BLOCO 5 — Modalidade Oficial da GCC e Prazos ═══ */}
         <div className="border border-slate-700 rounded-lg">
-          <BlockHeader num={5} icon="⚡" title="Bloco 5 — Prazos e Priorização" color="bg-slate-700/50 text-red-300" />
+          <BlockHeader num={5} icon="⚡" title="Bloco 5 — Modalidade Oficial da GCC e Prazos Regimentais" color="bg-slate-700/50 text-red-300" />
           {openBlocks[5] && (
             <div className="p-4 space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Seletor Oficial de Modalidade */}
                 <div>
-                  <label className="block text-xs font-medium text-slate-400 mb-1">Data Pretendida de Assinatura *</label>
-                  <input type="date" value={formData.intended_date} onChange={(e) => setFormData({...formData, intended_date: e.target.value})} className={inputCls('intended_date')} />
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Modalidade / Esteira Oficial da GCC (Planilha de Referência) *
+                  </label>
+                  <select
+                    value={formData.procurement_type}
+                    onChange={(e) => setFormData({...formData, procurement_type: e.target.value})}
+                    className={inputCls('procurement_type')}
+                  >
+                    {MODALIDADES_OFICIAIS_GCC.map((m) => (
+                      <option key={m.id} value={m.id}>
+                        {m.nome} — [Equipe: {m.responsavel}]
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Data Pretendida de Assinatura */}
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                    Data Pretendida de Assinatura / Homologação *
+                  </label>
+                  <input
+                    type="date"
+                    value={formData.intended_date}
+                    onChange={(e) => setFormData({...formData, intended_date: e.target.value})}
+                    className={inputCls('intended_date')}
+                  />
                   {errors.intended_date && <p className="text-red-400 text-xs mt-1">{errors.intended_date}</p>}
                 </div>
               </div>
 
-              <h4 className="text-sm font-semibold text-blue-400 pt-2">Questionário de Priorização (Notas: 1, 3 ou 5)</h4>
+              {/* Card de Previsão de Entrega no Setor com os Responsáveis da GCC */}
+              {modalidadeSelecionada && (
+                <div className="bg-slate-900 border border-indigo-500/40 rounded-xl p-4 space-y-2.5 shadow-inner">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">🏢</span>
+                      <span className="text-xs font-bold text-white">
+                        {modalidadeSelecionada.nome}
+                      </span>
+                    </div>
+                    <span className="text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 px-2.5 py-0.5 rounded-full">
+                      👤 Equipe GCC: {modalidadeSelecionada.responsavel}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+                    <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                      <span className="text-[10px] text-slate-400 uppercase font-mono block">Duração GCC (IC 99%)</span>
+                      <span className="text-sm font-bold text-blue-400 font-mono mt-0.5 block">
+                        ~{modalidadeSelecionada.dias_real} dias úteis
+                      </span>
+                      <span className="text-[9px] text-slate-500">Planilha antiga: {modalidadeSelecionada.dias_planilha} d.u.</span>
+                    </div>
+
+                    <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                      <span className="text-[10px] text-slate-400 uppercase font-mono block">Lead Time Total</span>
+                      <span className="text-sm font-bold text-emerald-400 font-mono mt-0.5 block">
+                        ~{modalidadeSelecionada.dias_real + 25} dias úteis
+                      </span>
+                      <span className="text-[9px] text-slate-500">ETP/TR (15d) + GCC + Entrega (10d)</span>
+                    </div>
+
+                    <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800">
+                      <span className="text-[10px] text-slate-400 uppercase font-mono block">Economia de Folga</span>
+                      <span className="text-sm font-bold text-amber-400 font-mono mt-0.5 block">
+                        -{modalidadeSelecionada.dias_planilha - modalidadeSelecionada.dias_real} dias
+                      </span>
+                      <span className="text-[9px] text-slate-500">Previsão estatística auditada</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Questionário de Priorização da Minuta (Anexo II) */}
+              <div className="flex items-center justify-between pt-2">
+                <h4 className="text-sm font-semibold text-blue-400">
+                  Critérios Regimentais de Priorização (Anexo II - Notas: 1, 3 ou 5)
+                </h4>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono font-bold text-slate-300">
+                    Pontuação: <strong className="text-blue-400 font-mono text-sm">{(formData.f1 * 30) + (formData.f2 * 30) + (formData.f3 * 25) + (formData.f4 * 15)} / 500</strong>
+                  </span>
+                  <span className={`px-2 py-0.5 rounded text-xs font-black font-mono ${
+                    (formData.f2 === 5 || formData.f3 === 5 || ((formData.f1 * 30) + (formData.f2 * 30) + (formData.f3 * 25) + (formData.f4 * 15)) >= 380)
+                      ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                      : ((formData.f1 * 30) + (formData.f2 * 30) + (formData.f3 * 25) + (formData.f4 * 15)) >= 240
+                      ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                      : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                  }`}>
+                    {formData.f2 === 5 || formData.f3 === 5 || ((formData.f1 * 30) + (formData.f2 * 30) + (formData.f3 * 25) + (formData.f4 * 15)) >= 380
+                      ? 'ALTO (1º Quadrimestre)'
+                      : ((formData.f1 * 30) + (formData.f2 * 30) + (formData.f3 * 25) + (formData.f4 * 15)) >= 240
+                      ? 'MÉDIO (2º Quadrimestre)'
+                      : 'BAIXO (3º Quadrimestre)'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Alerta de Enquadramento Obrigatório ou Vedação */}
+              {(formData.f2 === 5 || formData.f3 === 5) && (
+                <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-xs text-rose-300 flex items-center gap-2">
+                  <span>⚡</span>
+                  <span>
+                    <strong>Enquadramento Obrigatório como ALTO (Item 6 do Anexo II):</strong>{' '}
+                    {formData.f2 === 5 ? 'Contrato expira no exercício sem prorrogação (Item 6.b).' : 'Obrigação legal com prazo fatal no exercício (Item 6.a).'}
+                    {' '}Envio obrigatório no <strong>1º Quadrimestre (até Abril)</strong>.
+                  </span>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
-                  { id: 'f1', label: 'F1 — Criticidade (Peso 30)', desc: 'Impacto em caso de não contratação' },
-                  { id: 'f2', label: 'F2 — Descontinuidade (Peso 30)', desc: 'Risco de interrupção de serviço por vencimento contratual' },
-                  { id: 'f3', label: 'F3 — Obrigação Legal (Peso 25)', desc: 'Existência de prazo fatal ou obrigação regulatória' },
-                  { id: 'f4', label: 'F4 — Materialidade (Peso 15)', desc: 'Relevância financeira e orçamentária' },
+                  { id: 'f1', label: 'F1 — Criticidade para Atividade-Fim (Peso 30%)', desc: 'Nota 5: Indispensável à rede / Nota 3: Apoio relevante / Nota 1: Administrativo' },
+                  { id: 'f2', label: 'F2 — Risco de Descontinuidade (Peso 30%)', desc: 'Nota 5: Contrato expira sem prorrogação / Nota 3: Prorrogável / Nota 1: Nova' },
+                  { id: 'f3', label: 'F3 — Obrigação Legal / Controle (Peso 25%)', desc: 'Nota 5: Prazo fatal de TCU/Anatel no ano / Nota 3: Sem prazo fatal / Nota 1: Discricionária' },
+                  { id: 'f4', label: 'F4 — Materialidade Financeira (Peso 15%)', desc: 'Nota 5: 10% maiores valores / Nota 3: 40% seguintes / Nota 1: 50% menores' },
                 ].map((f) => (
                   <div key={f.id} className="p-3 bg-slate-900/70 border border-slate-700 rounded-lg">
                     <label className="block text-sm font-medium text-slate-200">{f.label}</label>
@@ -308,18 +418,20 @@ export default function NewDemand({ onDemandCreated, onCancel, demandToEdit }) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-400 mb-1">Justificativa das Notas</label>
-                <textarea rows="2" value={formData.score_justification} onChange={(e) => setFormData({...formData, score_justification: e.target.value})} className={inputCls('score_justification')} placeholder="Ex: F1: energia de retaguarda das estações. F2: contrato expira sem possibilidade de prorrogação..." />
+                <label className="block text-xs font-medium text-slate-400 mb-1">Justificativa das Notas de Priorização</label>
+                <textarea rows="2" value={formData.score_justification} onChange={(e) => setFormData({...formData, score_justification: e.target.value})} className={inputCls('score_justification')} placeholder="Ex: F1: serviço essencial. F2: vencimento iminente sem prorrogação..." />
               </div>
             </div>
           )}
         </div>
 
-        {/* ═══ Botões ═══ */}
+        {/* ═══ Botões de Ação ═══ */}
         <div className="flex justify-end gap-3 pt-4 border-t border-slate-700">
-          <button type="button" onClick={onCancel} className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm transition">Cancelar</button>
+          <button type="button" onClick={onCancel} className="px-5 py-2.5 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg text-sm transition">
+            Cancelar
+          </button>
           <button type="submit" disabled={loading} className={`px-6 py-2.5 ${isEditing ? 'bg-amber-600 hover:bg-amber-700' : 'bg-blue-600 hover:bg-blue-700'} text-white font-medium rounded-lg text-sm shadow transition`}>
-            {loading ? 'Processando Cálculo...' : isEditing ? '✓ Salvar Ajustes e Reenviar à Diretoria' : 'Salvar Necessidade'}
+            {loading ? 'Processando Cálculo...' : isEditing ? '✓ Salvar Ajustes e Reenviar à Diretoria' : '✓ Salvar Necessidade e Gerar Certidão PLAC'}
           </button>
         </div>
       </form>

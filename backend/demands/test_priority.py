@@ -1,5 +1,5 @@
 import unittest
-from .services import calculate_priority
+from demands.services import calculate_priority
 
 class PriorityCalculationTest(unittest.TestCase):
     def test_minimum_score(self):

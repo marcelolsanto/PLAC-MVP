@@ -1,0 +1,1736 @@
+{
+  "PREGÃO": {
+    "total_etapas": 40,
+    "total_linhas": 40,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL (Oficialização de demanda /DOD ou NT, ETP, TR//Projeto Básico, Análise de Risco, RMS, Requisição SAP)",
+        "responsavel": "LAYLLAH / MARCUS",
+        "prazo": 5.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 10.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUADRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "ELABORAÇÃO MINUTA DE CONTRATO * (e salvar como arquivo auxiliar do processo)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "PESQUISA DE MERCADO/JUSTIFICATIVA DE VALOR",
+        "responsavel": "FRANCIELE / ROBERTA",
+        "prazo": 15.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "AJUSTES NA INSTRUÇÃO DURANTE A PESQUISA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "MANIFESTAÇÃO DE VALOR DA ÁREA REQUISITANTE E NOVA RMS (caso a pesquisa indique o valor de referência a maior)",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "AUTORIZAÇÃO DO ORDENADOR, QUANDO NECESSÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "PREVISÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "AUTORIZAÇÃO DA ABERTURA DO PROCESSO LICITATÓRIO",
+        "responsavel": "ALENCASTRO",
+        "prazo": 2.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "ANEXAR DEM PREGOEIRO E EQUIPE DE APOIO",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "ELABORAÇÃO MINUTA DE EDITAL",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "ANÁLISE JÚRIDICA  (COM CHECK LIST)",
+        "responsavel": "",
+        "prazo": 15.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "SANEAMENTO DO PROCESSO (ÁREA REQUISITANTE E GCC), QUANDO COUBER",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "ELABORAÇÃO  DO DESPACHO SANEADOR",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "ANÁLISE E PUBLICAÇÃO EDITAL NO PNCP, DOU E SITE DA TELEBRAS",
+        "responsavel": "PEDRO / ROSILDA",
+        "prazo": 3.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "ESCLARECIMENTOS/IMPUGNAÇÃO",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "ABERTURA DA SESSÃO PÚBLICA",
+        "responsavel": "",
+        "prazo": 15.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "ANÁLISE DE PROPOSTA/HABILITAÇÃO: JURÍDICA; ECONÔMICA-FINANANCEIRA; e FISCAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "ANÁLISE DE PROPOSTA/HABILITAÇÃO: TÉCNICA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "PRAZOS RECURSAIS (5 + 5 + 15)",
+        "responsavel": "",
+        "prazo": 25.0
+      },
+      {
+        "numero": 22.0,
+        "atividade": "ADJUDICAÇÃO/HOMOLOGAÇÃO",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 23.0,
+        "atividade": "DESPACHO DE ENCAMINHAMENTO PARA FORMALIZAÇÃO CONTRATUAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 24.0,
+        "atividade": "SOLICITAR DIF, ANEXO C E SIGNATÁRIOS FORNECEDOR (DOCUMENTOS RESPECTIVOS)",
+        "responsavel": "LAYLLAH / MARCUS",
+        "prazo": 3.0
+      },
+      {
+        "numero": 25.0,
+        "atividade": "SOLICITAR IVA GCONT *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 26.0,
+        "atividade": "SOLICITAR AJUSTE RC À AREA REQUISITANTE",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 27.0,
+        "atividade": "INSERIR  DOCUMENTOS DOS SIGNATÁRIOS NO PROCESSO *",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 28.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 29.0,
+        "atividade": "ASSINATURA DE CONTRATO *",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 30.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO AO FORNECEDOR (com Orientações gerais para emissão de Notas Fiscais e Calendário Fiscal)",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 31.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO CONTRATO NO DOU *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 32.0,
+        "atividade": "CADASTRO DO CONTRATO NO SAP *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 33.0,
+        "atividade": "SOLICITAR GARANTIA, QUANDO CONSTAR NO TR *",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 34.0,
+        "atividade": "ENCAMINHAR CONTRATO PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 35.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 36.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 1.0,
+        "atividade": "* Apenas quando necessária  a formalização de contrato - art. 73 da Lei nº 13.303/2016.",
+        "responsavel": "",
+        "prazo": 0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "Pregão - Fase RECURSO: se não houver itenção de recursos, o prazo limite 25 de dias úteis será desconsiderado.",
+        "responsavel": "",
+        "prazo": 0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "Pregão - Fase ABERTURA DA SESSÃO PÚBLICA: se for para aquisição de bens, são 8 dias úteis da data da publicação do Edital no PNCP, se for par contratação de serviços, serão 15 dias úteis.",
+        "responsavel": "",
+        "prazo": 0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "Pregão - Fase ANÁLISE DE PROPOSTA/HABILITAÇÃO: TÉCNICA: pode variar, dependendo da disponibilidade da área técnica para análise e resposta.",
+        "responsavel": "",
+        "prazo": 0
+      }
+    ]
+  },
+  "DISPENSA_Tradicional": {
+    "total_etapas": 32,
+    "total_linhas": 32,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL  (Oficialização de demanda: DOD ou Nota técnica , ETP, Projeto Básico, RMS, RC, Análise de Risco)",
+        "responsavel": "LAYLLAH / MARCUS",
+        "prazo": 2.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "ELABORAÇÃO MINUTA DE CONTRATO* (e salvar como arquivo auxiliar do processo)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "PESQUISA DE MERCADO  ou JUSTIFICATIVA DE VALOR\n(ENVIAR PROJETO BÁSICO E MINUTA DE CONTRATO PARA O FORNECEDOR ENCAMINHAR DECLARAÇÃO DE CONCORDÂNCIA E DE QUE A PROPOSTA FOI ELABORADA DE ACORDO COM O PROJETO BÁSICO)",
+        "responsavel": "FRANCIELE / ROBERTA",
+        "prazo": 15.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "AJUSTES NA INSTRUÇÃO DURANTE A PESQUISA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "SOLICITAR MANIFESTAÇÃO DE VALOR DA ÁREA REQUISITANTE E NOVA RMS (caso a pesquisa indique o valor de referência a maior)",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "AUTORIZAÇÃO DO ORDENADOR, QUANDO NECESSÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE FISCAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "PREVISÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "MINUTA DE TERMO DE APROVAÇÃO",
+        "responsavel": "LAYLLAH / MARCUS",
+        "prazo": 1.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "MINUTA DE TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "ANÁLISE JÚRIDICA",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "SANEAMENTO DO PROCESSO (ÁREA REQUISITANTE E GCC), QUANDO COUBER",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DE DISPENSA NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "DESPACHO SANEADOR E ENCAMINHAMENTO DO CONTRATO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "SOLICITAR DIF E SIGNATÁRIOS FORNECEDOR (DOCUMENTOS RESPECTIVOS)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "SOLICITAR IVA GCONT *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 22.0,
+        "atividade": "SOLICITAR AJUSTE DA RC",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 23.0,
+        "atividade": "INSERIR DOCUMENTOS DOS SIGNATÁRIOS NO PROCESSO*",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 24.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 25.0,
+        "atividade": "ASSINATURA DE CONTRATO *",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 26.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO AO FORNECEDOR (com Orientações gerais para emissão de Notas Fiscais, Calendário Fiscal, Código de Ética e Conduta para Fornecedores e Parceiros, e respectiva Declaração)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 27.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DO CONTRATO NO DOU *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 28.0,
+        "atividade": "CADASTRO DO CONTRATO NO SAP *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 29.0,
+        "atividade": "SOLICITAR GARANTIA, QUANDO CONSTAR NO TR *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 30.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 31.0,
+        "atividade": "PUBLICAÇÃO DO CONTRATO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 32.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL *",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  },
+  "DISPENSA Tradic_baixo valor": {
+    "total_etapas": 32,
+    "total_linhas": 32,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL  (Oficialização de demanda: DOD ou Nota técnica , ETP, Projeto Básico, RMS, RC, Análise de Risco)",
+        "responsavel": "LAYLLAH / MARCUS",
+        "prazo": 2.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "ELABORAÇÃO MINUTA DE CONTRATO*",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "PESQUISA DE MERCADO ou JUSTIFICATIVA DE VALOR\n(ENVIAR PROJETO BÁSICO E MINUTA DE CONTRATO PARA O FORNECEDOR ENCAMINHAR DECLARAÇÃO DE CONCORDÂNCIA E DE QUE A PROPOSTA FOI ELABORADA DE ACORDO COM O PROJETO BÁSICO)",
+        "responsavel": "FRANCIELE / ROBERTA",
+        "prazo": 15.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "AJUSTES NA INSTRUÇÃO DURANTE A PESQUISA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "SOLICITA MANIFESTAÇÃO DE VALOR DA ÁREA REQUISITANTE , INDICAÇÃO DE FISCAIS , CRONOGRAMA DE DESEMBOLSO E NOVA RMS (caso a pesquisa indique o valor de referência a maior ou quando não estiver assinada pela autoridade competente )",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "AUTORIZAÇÃO DO ORDENADOR, QUANDO NECESSÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "PARECER PADRÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE FISCAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "PREVISÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "MINUTA DE TERMO DE APROVAÇÃO **",
+        "responsavel": "LAYLLAH / MARCUS",
+        "prazo": 1.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "MINUTA DE TERMO DE RATIFICAÇÃO**",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "ANÁLISE JÚRIDICA, QUANDO COUBER**",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "SANEAMENTO DO PROCESSO (ÁREA REQUISITANTE E GCC), QUANDO COUBER **",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DE DISPENSA NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "ENCAMINHAMENTO CONTRATOS *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "SOLICITAR DIF E SIGNATÁRIOS FORNECEDOR (DOCUMENTOS RESPECTIVOS) *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "SOLICITAR IVA GCONT *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 22.0,
+        "atividade": "SOLICITAR AJUSTE DA RC À AREA REQUISITANTE",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 23.0,
+        "atividade": "INSERIR DOCUMENTOS DOS SIGNATÁRIOS NO PROCESSO *",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 24.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE *",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 25.0,
+        "atividade": "ASSINATURA DE CONTRATO *",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 26.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO AO FORNECEDOR (com Orientações gerais para emissão de Notas Fiscais, Calendário Fiscal, Código de Ética e Conduta para Fornecedores e Parceiros, e respectiva Declaração)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 27.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DO CONTRATO NO DOU *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 28.0,
+        "atividade": "CADASTRO DO CONTRATO NO SAP *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 29.0,
+        "atividade": "SOLICITAR GARANTIA, QUANDO CONSTAR NO TR *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 30.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 31.0,
+        "atividade": "ENCAMINHAR CONTRATO PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 32.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL *",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  },
+  "DISPENSA baixo valor_eletrônica": {
+    "total_etapas": 36,
+    "total_linhas": 36,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL  (Oficialização de demanda: DOD ou Nota técnica , ETP, Projeto Básico, RMS, RC, Análise de Risco)",
+        "responsavel": "MARCUS / LAYLLAH",
+        "prazo": 2.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "ELABORAÇÃO MINUTA DE CONTRATO* (e salvar como arquivo auxiliar do processo)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "MINUTA DE TERMO DE APROVAÇÃO **",
+        "responsavel": "",
+        "prazo": 0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "PESQUISA DE MERCADO ou JUSTIFICATIVA DE VALOR\n(ENVIAR PROJETO BÁSICO E MINUTA DE CONTRATO PARA O FORNECEDOR ENCAMINHAR DECLARAÇÃO DE CONCORDÂNCIA E DE QUE A PROPOSTA FOI ELABORADA DE ACORDO COM O PROJETO BÁSICO)",
+        "responsavel": "FRANCIELE / ROBERTA /",
+        "prazo": 15.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "AJUSTES NA INSTRUÇÃO DURANTE A PESQUISA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "SOLICITAR MANIFESTAÇÃO DE VALOR DA ÁREA REQUISITANTE , INDICAÇÃO DE FISCAIS , CRONOGRAMA DE DESEMBOLSO E NOVA RMS (caso a pesquisa indique o valor de referência a maior ou quando não estiver assinada pela autoridade competente )",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "AUTORIZAÇÃO DO ORDENADOR, QUANDO NECESSÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "PREVISÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "PARECER PADRÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "LISTA DE VERIFICAÇÃO (se não for para o jurídico)",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "ANÁLISE JÚRIDICA, QUANDO COUBER**",
+        "responsavel": "ALENCASTRO",
+        "prazo": 1.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "SANEAMENTO DO PROCESSO (ÁREA REQUISITANTE E GCC), QUANDO COUBER **",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "LISTA DE VERIFICAÇÃO (se for para o jurídico)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "ANÁLISE E PUBLICAÇÃO DO AVISO/EDITAL  NO PNCP E DOU",
+        "responsavel": "PEDRO /ROSILDA",
+        "prazo": 3.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "ESCLARECIMENTOS/IMPUGNAÇÃO",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "ABERTURA DA SESSÃO PÚBLICA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "ANÁLISE DE PROPOSTA/HABILITAÇÃO: JURÍDICA; ECONÔMICA-FINANANCEIRA; e FISCAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "ANÁLISE DE PROPOSTA/HABILITAÇÃO: TÉCNICA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "ADJUDICAÇÃO/HOMOLOGAÇÃO",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 22.0,
+        "atividade": "DESPACHO DE ENCAMINHAMENTO PARA FORMALIZAÇÃO CONTRATUAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 23.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "MARCUS / LAYLLAH",
+        "prazo": 1.0
+      },
+      {
+        "numero": 24.0,
+        "atividade": "SOLICITAR AJUSTE DA RC À AREA REQUISITANTE",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 25.0,
+        "atividade": "SOLICITAR DIF E SIGNATÁRIOS FORNECEDOR (DOCUMENTOS RESPECTIVOS) *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 26.0,
+        "atividade": "SOLICITAR IVA GCONT *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 27.0,
+        "atividade": "INSERIR DOCUMENTOS DOS SIGNATÁRIOS NO PROCESSO *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 28.0,
+        "atividade": "CONFERIR VALIDADE DAS CERTIDÕES DE REGULARIDADE *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 29.0,
+        "atividade": "ENCAMINHAMENTO CONTRATOS *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 30.0,
+        "atividade": "ASSINATURA DE CONTRATO *",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 31.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO AO FORNECEDOR (com Orientações gerais para emissão de Notas Fiscais, Calendário Fiscal, Código de Ética e Conduta para Fornecedores e Parceiros, e respectiva Declaração)",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 32.0,
+        "atividade": "CADASTRO DO CONTRATO NO SAP *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 33.0,
+        "atividade": "SOLICITAR GARANTIA, QUANDO CONSTAR NO TR *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 34.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 35.0,
+        "atividade": "ENCAMINHAR CONTRATO PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 36.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL *",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  },
+  "INEXIGIBILIDADE": {
+    "total_etapas": 31,
+    "total_linhas": 31,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL (Oficialização de demanda /DOD ou NT, ETP, Projeto Básico, Análise de Risco, RMS, Requisição SAP)",
+        "responsavel": "MARCUS / LAYLLAH",
+        "prazo": 5.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 10.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "ELABORAÇÃO MINUTA DE CONTRATO*",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "ENVIAR PROJETO BÁSICO E MINUTA DE CONTRATO PARA O FORNECEDOR ENCAMINHAR DECLARAÇÃO DE CONCORDÂNCIA E DE QUE A PROPOSTA FOI ELABORADA DE ACORDO COM O PROJETO BÁSICO XXXXXX",
+        "responsavel": "",
+        "prazo": 0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "PESQUISA DE MERCADO  ou JUSTIFICATIVA DE VALOR E SOLICITAÇÃO DE NOVA RMS (quando a renovação da proposta aumenta o valor)",
+        "responsavel": "FRANCIELE / ROBERTA",
+        "prazo": 15.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "AJUSTES NA INSTRUÇÃO DURANTE A PESQUISA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "AUTORIZAÇÃO DO ORDENADOR, QUANDO NECESSÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE FISCAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "PREVISÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "MINUTA DE TERMO DE APROVAÇÃO",
+        "responsavel": "MARCUS / LAYLLAH",
+        "prazo": 1.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "MINUTA DE TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "ANÁLISE JÚRIDICA",
+        "responsavel": "",
+        "prazo": 15.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "SANEAMENTO DO PROCESSO (ÁREA REQUISITANTE E GCC), QUANDO COUBER",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "SANEADOR / LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DE INEXIGIBILIDADE NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "ENCAMINHAMENTO GESTÃO DE CONTRATOS *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "SOLICITAR DIF E SIGNATÁRIOS FORNECEDOR (DOCUMENTOS RESPECTIVOS)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "SOLICITAR IVA GCONT *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "SOLICITAR AJUSTE DA RC À AREA REQUISITANTE",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 22.0,
+        "atividade": "INSERIR DOCUMENTOS DOS SIGNATÁRIOS NO PROCESSO *",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 23.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 24.0,
+        "atividade": "ASSINATURA DO CONTRATO *",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 25.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO OU DA NOTA DE EMPENHO AO FORNECEDOR (com Orientações gerais para emissão de Notas Fiscais, Calendário Fiscal, Código de Ética e Conduta para Fornecedores e Parceiros, e respectiva Declaração)",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 26.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DO CONTRATO NO DOU*",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 27.0,
+        "atividade": "CADASTRAR CONTRATO NO SAP *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 28.0,
+        "atividade": "SOLICITAR GARANTIA, QUANDO CONSTAR NO TR *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 29.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 30.0,
+        "atividade": "ENCAMINHAR CONTRATO  PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 31.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL *",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  },
+  "INEXIGIBILIDADE _Curso": {
+    "total_etapas": 15,
+    "total_linhas": 15,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL  (Requisição de capacitação e Nota Técnica, Declaração Atividades de capacitação, proposta, termo de inscrição, documentos que comprovem a notória especialização, termo de inscrição em ações de capacitação, RC, RMS)",
+        "responsavel": "FRANCIELE / ROBERTA",
+        "prazo": 3.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "JUSTIFICATIVA DE VALOR",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE FISCAL (se tiver pendências, o prazo é maior)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "PARECER PADRÃO",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "PREVISÃO E ADEQUAÇÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "SANEADOR / LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DE INEXIGIBILIDADE NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "ELABORAR ORDEM DE COMPRA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "ENCAMINHAMENTO DA ORDEM DE COMPRA AO FORNECEDOR \n(com Orientações gerais para emissão de Notas Fiscais, Calendário Fiscal)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 2.0
+      }
+    ]
+  },
+  "DISPENSA__Locação": {
+    "total_etapas": 19,
+    "total_linhas": 19,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL  (de acordo com o Parecer Padrão de Locação - Parecer Padrão INT nº 0140-2019-1200)",
+        "responsavel": "VANESSA / THORGARMA",
+        "prazo": 5.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 10.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "JUNTAR O PARECER PADRÃO nº 0140-2019-1200",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE FISCAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "PREVISÃO E ADEQUAÇÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "ELABORAÇÃO DA MINUTA DE CONTRATO",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "SANEADOR / LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DE DISPENSA NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "INSERIR DOCUMENTOS DOS SIGNATÁRIOS NO PROCESSO",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "ASSINATURA DE CONTRATO",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DO CONTRATO NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "CADASTRO SAP",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO AO LOCADOR  (enviar o Código de Ética e Conduta para Fornecedores e Parceiros)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "ENCAMINHAR CONTRATO PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  },
+  "DISPENSA_Energia": {
+    "total_etapas": 21,
+    "total_linhas": 21,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL  (Nota Técnica de oficialização de demanda (justificativa da dispensa e razão da escolhado fornecedor); minuta do termo de adesão, RMS, RC",
+        "responsavel": "VANESSA / THORGARMA",
+        "prazo": 5.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 10.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "JUSTIFICATIVA DE VALOR (demonstração de que o preço cobrado é o preço de mercado)",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "PARECER PADRÃO INTnº 0204/2018/1200-TB",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE FISCAL",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "MINUTA DO TERMO DE ADESÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "CONTRATO DE CONCESSÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "PREVISÃO E ADEQUAÇÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "SANEADOR / LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DE DISPENSA NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "INSERIR DOCUMENTOS DOS SIGNATÁRIOS  NO PROCESSO",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "ASSINATURA TERMO DE ADESÃO",
+        "responsavel": "",
+        "prazo": 0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "ENCAMINHAR À CONCESSIONÁRIA TERMO DE ADESÃO ASSINADO  (enviar o Código de Ética e Conduta para Fornecedores e Parceiros)",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DO CONTRATO NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "CADASTRO SAP",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "ENCAMINHAR CONTRATO PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  },
+  "INEXIGIBILIDADE Compartilhament": {
+    "total_etapas": 23,
+    "total_linhas": 23,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL (de acordo com o Parecer Padrão de Locação - Parecer Padrão TLB-PRO-2021-00129, RMS, Requisição SAP)",
+        "responsavel": "VANESSA / THORGARMA",
+        "prazo": 5.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 10.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "JUSTIFICATIVA DE VALOR",
+        "responsavel": "",
+        "prazo": 15.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "MANIFESTAÇÃO DE VALOR DA ÁREA DEMANDANTE, QUANDO NECESSÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "AUTORIZAÇÃO DO ORDENADOR, QUANDO NECESSÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "ELABORAR MINUTA DE CONTRATO ou JUNTAR O TERMO DE ADESÃO ou CONTRATO PADRÃO DA CONCESSIONÁRIA",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "TERMO DE APROVAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "TERMO DE RATIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "PREVISÃO E ADEQUAÇÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "PARECER PADRÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "PUBLICAÇÃO NO DOU DO EXTRATO DE INEXIGIBILIDADE",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "SANEADOR / LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "INSERIR DOCUMENTOS DOS SIGNATÁRIOS  NO PROCESSO",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "ASSINATURA DE CONTRATO",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "PUBLICAÇÃO NO DOU DO EXTRATO DO CONTRATO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "CADASTRO SAP – CONTRATO",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal) - Observar que a indicação de fiscal já vem lá na NT",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO AO FORNECEDOR  (enviar o Código de Ética e Conduta para Fornecedores e Parceiros)",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "ENCAMINHAMENTO DO PROCESSO AO GESTOR",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 22.0,
+        "atividade": "ENCAMINHAR CONTRATO PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 23.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  },
+  "AFASTAMENTO": {
+    "total_etapas": 30,
+    "total_linhas": 30,
+    "etapas": [
+      {
+        "numero": 1.0,
+        "atividade": "ANÁLISE DOS DOCUMENTOS DE INSTRUÇÃO PROCESSUAL (de acordo com a Prática nº 88 - Autorização da contratação (Redir ou Conselho), NT Oficialização da demanda; ETP; Projeto Básico; Análise de Risco)",
+        "responsavel": "ROSILDA\nPEDRO",
+        "prazo": 5.0
+      },
+      {
+        "numero": 2.0,
+        "atividade": "SANEAMENTO DA INSTRUÇÃO DO PROCESSO PELA ÁREA REQUISITANTE, QUANDO NECESSÁRIO",
+        "responsavel": "",
+        "prazo": 8.0
+      },
+      {
+        "numero": 3.0,
+        "atividade": "TERMO DE ENQUANDRAMENTO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 4.0,
+        "atividade": "ELABORAÇÃO DA MINUTA DE CONTRATO* e MINUTA TERMO DE APROVAÇÃO FINAL",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 5.0,
+        "atividade": "PUBLICAÇÃO DO AVISO DE CONTRATAÇÃO DIRETA POR AFASTAMENTO NO DOU",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 6.0,
+        "atividade": "PESQUISA DE MERCADO",
+        "responsavel": "FRANCIELE ROBERTA",
+        "prazo": 15.0
+      },
+      {
+        "numero": 7.0,
+        "atividade": "MAPA COMPARATIVO DE PREÇOS",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 8.0,
+        "atividade": "ESCOLHA DE PROPOSTA PELA ÁREA REQUISITANTE - ELABORAÇÃO DO RANKING",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 9.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 10.0,
+        "atividade": "RMS",
+        "responsavel": "",
+        "prazo": 3.0
+      },
+      {
+        "numero": 11.0,
+        "atividade": "PREVISÃO E ADEQUAÇÃO ORÇAMENTÁRIA",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 12.0,
+        "atividade": "ANÁLISE JÚRIDICA",
+        "responsavel": "ROSILDA\nPEDRO",
+        "prazo": 15.0
+      },
+      {
+        "numero": 13.0,
+        "atividade": "SANEAMENTO DO PROCESSO (ÁREA REQUISITANTE, QUANDO COUBER)",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 14.0,
+        "atividade": "LISTA DE VERIFICAÇÃO",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 15.0,
+        "atividade": "ELABORAÇÃO DO SANEADOR",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 16.0,
+        "atividade": "TERMO DE APROVAÇÃO PRÉVIO À ASSINATURA DO CONTRATO",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 17.0,
+        "atividade": "PUBICAÇÃO RESULTADO DE JULGAMENTO - DOU E SITE",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 18.0,
+        "atividade": "SOLICITAR DIF E SIGNATÁRIOS FORNECEDOR (DOCUMENTOS RESPECTIVOS) *",
+        "responsavel": "LAYLLAH\nMARCUS",
+        "prazo": 1.0
+      },
+      {
+        "numero": 19.0,
+        "atividade": "SOLICITAR IVA GCONT *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 20.0,
+        "atividade": "SOLICITAR RC E ELABORAÇÃO DA ORDEM DE COMPRA",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 21.0,
+        "atividade": "DOCS SIGNATÁRIOS TB *",
+        "responsavel": "",
+        "prazo": 0.0
+      },
+      {
+        "numero": 22.0,
+        "atividade": "CERTIDÕES DE REGULARIDADE",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 23.0,
+        "atividade": "ASSINATURA DE CONTRATO *",
+        "responsavel": "",
+        "prazo": 5.0
+      },
+      {
+        "numero": 24.0,
+        "atividade": "ENCAMINHAMENTO DO CONTRATO OU DA ORDEM DE COMPRA AO FORNECEDOR (com Orientações gerais para emissão de Notas Fiscais, Calendário Fiscal, Código de Ética e Conduta para Fornecedores e Parceiros, e respectiva Declaração)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 25.0,
+        "atividade": "PUBLICAÇÃO DO EXTRATO DO CONTRATO NO DOU *",
+        "responsavel": "",
+        "prazo": 2.0
+      },
+      {
+        "numero": 26.0,
+        "atividade": "CADASTRO DO CONTRATO NO SAP *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 27.0,
+        "atividade": "SOLICITAR GARANTIA, QUANDO CONSTAR NO TR *",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 28.0,
+        "atividade": "DEG (elaborar e encaminhar ao fiscal)",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 29.0,
+        "atividade": "ENCAMINHAR CONTRATO PARA PUBLICAÇÃO NO SITE DA TELEBRAS",
+        "responsavel": "",
+        "prazo": 1.0
+      },
+      {
+        "numero": 30.0,
+        "atividade": "ELABORAR DESPACHO E ENVIAR PARA GESTÃO CONTRATUAL *",
+        "responsavel": "",
+        "prazo": 1.0
+      }
+    ]
+  }
+}
