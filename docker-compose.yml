@@ -3,6 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgres:15-alpine
+    restart: unless-stopped
     environment:
       POSTGRES_DB: plac_db
       POSTGRES_USER: plac_user
@@ -19,6 +20,7 @@ services:
 
   backend:
     build: ./backend
+    restart: unless-stopped
     volumes:
       - ./backend:/app
     ports:
@@ -38,6 +40,7 @@ services:
 
   frontend:
     build: ./frontend
+    restart: unless-stopped
     volumes:
       - ./frontend:/app
       - /app/node_modules

@@ -959,8 +959,12 @@ class EmitirCertidaoPdfView(APIView):
         demanda.save(update_fields=['certidao_emitida_em'])
 
         nome_arquivo = f"Certidao_PLAC_{demanda.codigo_rastreio_plac or demanda.id}.pdf"
+        # ?inline=1 → abre no visualizador de PDF do navegador; padrão → força download
+        inline = str(request.query_params.get('inline', '')).lower() in ('1', 'true', 'sim')
+        disposicao = 'inline' if inline else 'attachment'
         response = HttpResponse(pdf_bytes, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="{nome_arquivo}"'
+        response['Content-Disposition'] = f'{disposicao}; filename="{nome_arquivo}"'
+        response['Access-Control-Expose-Headers'] = 'Content-Disposition'
         return response
 
 

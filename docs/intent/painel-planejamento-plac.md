@@ -1,0 +1,8 @@
+# Declaração de Intenção: Painel de Planejamento e Capacidade PLAC
+
+- **Outcome:** Painel de Planejamento do PLAC com Motor de Alocação de Capacidade e Janelas Cabíveis da GCC, distribuição por quadrimestres (Q1, Q2, Q3), cálculo reverso de prazos regimentais e emissão da Certidão com Código de Rastreio (PLAC-[ANO]-[ÁREA]+[NUM]), impedindo a sobrecarga da equipe de contratações e auditando a conformidade dos prazos das áreas demandantes.
+- **User:** GCC (blindagem contra sobrecarga operacional), Alta Gestão (visibilidade da taxa de ocupação da esteira de compras) e Diretores de Área (previsibilidade real de quando seu processo pode ser absorvido e homologado).
+- **Why now:** As áreas solicitam contratações para a mesma época sem considerar a esteira contínua nem a capacidade física da GCC, gerando picos e gargalos inevitáveis que depois são rotulados de 'atraso da burocracia'.
+- **Success:** O Robô de Planejamento valida em tempo real a compatibilidade da nova demanda com os processos já contratados e agendados no calendário, sugerindo automaticamente as datas cabíveis e emitindo a Certidão amarrada ao SIGA.
+- **Constraint:** A capacidade operacional da GCC e os prazos regimentais das 10 esteiras (Lei 13.303/2016 e RILC Telebras) são limites matemáticos fixos; o sistema rejeita ou sinaliza como inviável qualquer demanda cadastrada fora da janela temporal mínima.
+- **Out of scope:** Não haverá alteração unilateral de datas no Calendário de Contratações após a deliberação da REDIR sem a geração explícita de justificativa formal de desvio e impacto no indicador da diretoria solicitante.

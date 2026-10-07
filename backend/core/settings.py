@@ -58,25 +58,40 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# Configuração do Banco de Dados PostgreSQL lendo do Docker
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'plac_db'),
-        'USER': os.environ.get('DB_USER', 'plac_user'),
-        'PASSWORD': os.environ.get('DB_PASS', 'plac_password'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
-    },
-    'pncp': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pncp_db',
-        'USER': 'user',
-        'PASSWORD': 'password',
-        'HOST': 'pncp_db',
-        'PORT': '5432',
+import sys
+
+# Configuração do Banco de Dados PostgreSQL (ou SQLite em modo de teste)
+if 'test' in sys.argv or os.environ.get('USE_SQLITE') == '1':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        },
+        'pncp': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME', 'plac_db'),
+            'USER': os.environ.get('DB_USER', 'plac_user'),
+            'PASSWORD': os.environ.get('DB_PASS', 'plac_password'),
+            'HOST': os.environ.get('DB_HOST', 'localhost'),
+            'PORT': os.environ.get('DB_PORT', '5432'),
+        },
+        'pncp': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'pncp_db',
+            'USER': 'user',
+            'PASSWORD': 'password',
+            'HOST': 'pncp_db',
+            'PORT': '5432',
+        }
+    }
+
 
 # Usuário Customizado com Role
 AUTH_USER_MODEL = 'users.User'
@@ -109,3 +124,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configurações OAuth 2.0 / OpenID Connect (OIDC)
+OAUTH_CLIENT_ID = os.environ.get('OAUTH_CLIENT_ID', 'plac-mvp-client-id')
+OAUTH_CLIENT_SECRET = os.environ.get('OAUTH_CLIENT_SECRET', 'plac-mvp-client-secret')
+OAUTH_AUTH_URL = os.environ.get('OAUTH_AUTH_URL', 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize')
+OAUTH_TOKEN_URL = os.environ.get('OAUTH_TOKEN_URL', 'https://login.microsoftonline.com/common/oauth2/v2.0/token')
+OAUTH_USERINFO_URL = os.environ.get('OAUTH_USERINFO_URL', 'https://graph.microsoft.com/oidc/userinfo')
+OAUTH_REDIRECT_URI = os.environ.get('OAUTH_REDIRECT_URI', 'http://localhost:3030/oauth/callback')
+OAUTH_PROVIDER_NAME = os.environ.get('OAUTH_PROVIDER_NAME', 'TELEBRAS_ENTRA_ID')
+OAUTH_SCOPE = os.environ.get('OAUTH_SCOPE', 'openid profile email')
+

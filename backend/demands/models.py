@@ -27,6 +27,7 @@ class Demand(models.Model):
         ('VALIDADO_DIRETOR', 'Validado pela Diretoria'),
         ('DEVOLVIDO_AJUSTES', 'Devolvido para Ajustes'),
         ('CONSOLIDADO', 'Consolidado pela GCC'),
+        ('DELIBERACAO_REDIR', 'Em Deliberação REDIR'),
         ('CONTRATADO', 'Contratado / Publicado no PNCP'),
         ('VIGENTE', 'Vigente'),
     )
@@ -91,15 +92,51 @@ class Demand(models.Model):
     redir_minute_number = models.CharField(max_length=100, blank=True, null=True, verbose_name="Número da Ata REDIR")
     is_extraordinary = models.BooleanField(default=False, verbose_name="Demanda Extraordinária (Fora do Ciclo)")
 
+    # ── Bloco 7 — Governança e Rastreabilidade SIGA (Robôs do PLAC) ──
+    codigo_rastreio_plac = models.CharField(max_length=60, blank=True, null=True, unique=True, verbose_name="Código de Rastreio PLAC")
+    siga_process_number = models.CharField(max_length=60, blank=True, null=True, db_index=True, verbose_name="Nº Processo SIGA")
+    certidao_emitida_em = models.DateTimeField(blank=True, null=True, verbose_name="Data de Emissão da Certidão")
+    quadrimestre_alvo = models.CharField(max_length=20, blank=True, null=True, verbose_name="Quadrimestre-Alvo de Homologação")
+
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="demands")
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def gerar_codigo_rastreio(self):
+        from datetime import date
+        ano = self.intended_date.year if self.intended_date else date.today().year
+        dir_str = str(self.directorate or 'GERAL').upper()
+        if 'TÉCNICO' in dir_str or 'TECNICO' in dir_str or 'DTO' in dir_str:
+            sigla = 'DTO'
+        elif 'ADMINISTRAT' in dir_str or 'FINAN' in dir_str or 'DAFRI' in dir_str:
+            sigla = 'DAFRI'
+        elif 'SISTEMAS' in dir_str or 'TECNOLOGIA' in dir_str or 'DSI' in dir_str:
+            sigla = 'DSI'
+        elif 'GOVERN' in dir_str or 'GCC' in dir_str:
+            sigla = 'GCC'
+        elif 'JURIDIC' in dir_str or 'CONJUR' in dir_str:
+            sigla = 'CONJUR'
+        else:
+            sigla = 'DIR'
+        seq = str(self.id or 1).zfill(4)
+        return f"PLAC{ano}-{sigla}{seq}"
 
     def save(self, *args, **kwargs):
         # Processa a fórmula de cálculo de forma invisível
         score, level = calculate_priority(self.f1, self.f2, self.f3, self.f4)
         self.priority_score = score
         self.priority_level = level
+        if not self.quadrimestre_alvo and self.intended_date:
+            m = self.intended_date.month
+            if m <= 4:
+                self.quadrimestre_alvo = 'Q1'
+            elif m <= 8:
+                self.quadrimestre_alvo = 'Q2'
+            else:
+                self.quadrimestre_alvo = 'Q3'
         super().save(*args, **kwargs)
+        if not self.codigo_rastreio_plac and self.id:
+            self.codigo_rastreio_plac = self.gerar_codigo_rastreio()
+            super().save(update_fields=['codigo_rastreio_plac'])
 
     def __str__(self):
         return f"Demanda #{self.id} - {self.description[:40]} ({self.priority_level})"

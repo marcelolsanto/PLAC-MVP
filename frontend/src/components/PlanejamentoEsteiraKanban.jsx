@@ -1,637 +1,717 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import api from '../services/api';
+import CertidaoVinculacaoModal from './CertidaoVinculacaoModal';
 
 export default function PlanejamentoEsteiraKanban() {
+  const [quadrimestre, setQuadrimestre] = useState('TODOS');
   const [ano, setAno] = useState(2026);
-  const [diretoria, setDiretoria] = useState('TODAS');
-  const [risco, setRisco] = useState('TODOS');
-  const [busca, setBusca] = useState('');
   const [loading, setLoading] = useState(true);
-  
-  // Dados recebidos do backend
-  const [kpis, setKpis] = useState(null);
-  const [colunasConfig, setColunasConfig] = useState([]);
+  const [resumo, setResumo] = useState(null);
   const [colunas, setColunas] = useState({
-    '1_DFD': [],
-    '2_ETP': [],
-    '3_PESQUISA_TR': [],
-    '4_JURIDICO': [],
-    '5_GCC': []
+    levantamento: [],
+    validacao_diretor: [],
+    consolidacao_gcc: [],
+    deliberacao_redir: [],
+    calendario_vigente: [],
+    devolvido_ajustes: [],
   });
 
-  // Modal de Detalhes do Processo
-  const [selectedProcess, setSelectedProcess] = useState(null);
+  const [selectedDemandForCertidao, setSelectedDemandForCertidao] = useState(null);
+  const [devolverTarget, setDevolverTarget] = useState(null);
+  const [motivoDevolucao, setMotivoDevolucao] = useState('');
+  const [actionLoading, setActionLoading] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
-  const fetchKanbanTelemetria = async () => {
+  // Ref para controle suave da rolagem horizontal do Kanban
+  const kanbanScrollRef = useRef(null);
+
+  const scrollKanban = (direction) => {
+    if (kanbanScrollRef.current) {
+      // Rola aproximadamente a largura de uma a duas colunas
+      const scrollAmount = kanbanScrollRef.current.clientWidth * 0.7;
+      kanbanScrollRef.current.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToFase = (fase) => {
+    if (kanbanScrollRef.current) {
+      if (fase === 'inicio') {
+        kanbanScrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      } else if (fase === 'deliberacao') {
+        kanbanScrollRef.current.scrollTo({ left: kanbanScrollRef.current.scrollWidth, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const fetchKanban = async () => {
     try {
       setLoading(true);
-      const params = { ano };
-      if (diretoria !== 'TODAS') params.diretoria = diretoria;
-      if (risco !== 'TODOS') params.risco = risco;
-      if (busca.trim()) params.busca = busca.trim();
+      const params = {};
+      if (quadrimestre !== 'TODOS') params.quadrimestre = quadrimestre;
+      if (ano) params.ano = ano;
 
-      const res = await api.get('/planejamento/kanban-telemetria/', { params });
-      setKpis(res.data.kpis);
-      setColunasConfig(res.data.colunas_config || []);
-      setColunas(res.data.colunas || {});
+      const res = await api.get('/demands/esteira_kanban/', { params });
+      setResumo(res.data.resumo);
+      setColunas(res.data.colunas);
     } catch (err) {
-      console.error('Erro ao carregar telemetria kanban:', err);
-      showFeedback('Erro ao carregar telemetria do Kanban de planejamento.', 'error');
+      console.error('Erro ao carregar esteira kanban:', err);
+      showFeedback('Erro ao sincronizar esteira de planejamento.', 'error');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchKanbanTelemetria();
-  }, [ano, diretoria, risco]);
-
-  // Debounce na busca textual
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      fetchKanbanTelemetria();
-    }, 350);
-    return () => clearTimeout(timer);
-  }, [busca]);
+    fetchKanban();
+  }, [quadrimestre, ano]);
 
   const showFeedback = (msg, type = 'success') => {
     setFeedback({ msg, type });
-    setTimeout(() => setFeedback(null), 5000);
+    setTimeout(() => setFeedback(null), 6000);
   };
 
-  const formatCurrency = (val) => {
-    if (!val && val !== 0) return 'R$ 0,00';
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+  const handleAvancarFase = async (demand) => {
+    // Trava de Governança no Frontend: alertar imediatamente se tentar avançar sem SIGA
+    if (!demand.siga_process_number) {
+      showFeedback(
+        `⛔ Bloqueio de Governança: A demanda ${demand.codigo_rastreio_plac || '#' + demand.id} deve ter o processo SIGA autuado com a Certidão do PLAC como Peça nº 01 antes do julgamento da Diretoria.`,
+        'error'
+      );
+      setSelectedDemandForCertidao(demand);
+      return;
+    }
+
+    try {
+      setActionLoading(true);
+      await api.post(`/demands/${demand.id}/avancar_fase/`);
+      showFeedback(`Demanda ${demand.codigo_rastreio_plac || '#' + demand.id} avançou com sucesso no ciclo de planejamento!`);
+      fetchKanban();
+    } catch (err) {
+      const errMsg = err.response?.data?.error || 'Erro ao avançar fase da demanda.';
+      showFeedback(errMsg, 'error');
+      if (err.response?.data?.bloqueio_siga) {
+        setSelectedDemandForCertidao(demand);
+      }
+    } finally {
+      setActionLoading(false);
+    }
   };
+
+  const handleConfirmDevolver = async () => {
+    if (!devolverTarget) return;
+    if (!motivoDevolucao.trim()) {
+      alert('Informe a justificativa/motivo para devolução da demanda.');
+      return;
+    }
+
+    try {
+      setActionLoading(true);
+      await api.post(`/demands/${devolverTarget.id}/retroceder_fase/`, {
+        motivo: motivoDevolucao.trim()
+      });
+      showFeedback(`Demanda #${devolverTarget.id} devolvida para ajustes com sucesso.`, 'info');
+      setDevolverTarget(null);
+      setMotivoDevolucao('');
+      fetchKanban();
+    } catch (err) {
+      showFeedback('Erro ao devolver demanda para ajustes.', 'error');
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleDownloadMinutaPdf = async () => {
+    try {
+      const qParam = quadrimestre !== 'TODOS' ? quadrimestre : '';
+      const res = await api.get('/planejamento/minuta-consolidada-pdf/', {
+        params: { quadrimestre: qParam, ano },
+        responseType: 'blob'
+      });
+
+      const blob = new Blob([res.data], { type: 'application/pdf' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `Minuta_Consolidada_PLAC_${ano}_${quadrimestre}.pdf`;
+      link.click();
+      window.URL.revokeObjectURL(link.href);
+      showFeedback('Minuta Consolidada baixada com sucesso!');
+    } catch (err) {
+      console.error(err);
+      showFeedback('Erro ao gerar Minuta Consolidada em PDF.', 'error');
+    }
+  };
+
+  const formatBRL = (val) => {
+    return Number(val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  };
+
+  // Cores do Semáforo da GCC com tratamento robusto para valores nulos
+  const getSemaforoGCC = () => {
+    if (!resumo || !resumo.capacidade_gcc) return { cor: 'slate', texto: 'Apurando...', desc: 'Apurando capacidade...', bg: 'bg-slate-800 border-slate-700 text-slate-300', badge: '⏳ Apurando' };
+    const totalProcessos = resumo.capacidade_gcc.total_processos_mes ?? resumo.capacidade_gcc.total ?? 0;
+    const statusCap = resumo.capacidade_gcc.status;
+    if (statusCap === 'VERDE') {
+      return {
+        cor: 'emerald',
+        bg: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400',
+        badge: '🟢 Fluxo Normal',
+        desc: `${totalProcessos} certames simultâneos (abaixo do limiar de 6)`
+      };
+    } else if (statusCap === 'AMARELO') {
+      return {
+        cor: 'amber',
+        bg: 'bg-amber-500/10 border-amber-500/30 text-amber-400',
+        badge: '🟡 Atenção / Carga Moderada',
+        desc: `${totalProcessos} certames simultâneos (faixa de atenção 6 a 8)`
+      };
+    } else {
+      return {
+        cor: 'rose',
+        bg: 'bg-rose-500/10 border-rose-500/30 text-rose-400',
+        badge: '🔴 Sobrecarga Crítica GCC',
+        desc: `${totalProcessos} certames previstos (excede limiar de 8)! Recomenda-se redistribuição.`
+      };
+    }
+  };
+
+  const semaforo = getSemaforoGCC();
 
   return (
-    <div className="p-4 sm:p-6 space-y-6 max-w-[1700px] mx-auto animate-fadeIn text-slate-100">
+    <div className="space-y-6">
       {/* Toast Feedback */}
       {feedback && (
         <div
-          className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-xl shadow-2xl border text-sm font-semibold flex items-center gap-2 animate-bounce ${
+          className={`p-4 rounded-xl flex items-center justify-between shadow-lg text-sm border font-medium ${
             feedback.type === 'error'
-              ? 'bg-rose-950/90 border-rose-500 text-rose-200'
-              : 'bg-emerald-950/90 border-emerald-500 text-emerald-200'
+              ? 'bg-rose-950/90 border-rose-700 text-rose-200'
+              : feedback.type === 'info'
+              ? 'bg-amber-950/90 border-amber-700 text-amber-200'
+              : 'bg-emerald-950/90 border-emerald-700 text-emerald-200'
           }`}
         >
-          <span>{feedback.type === 'error' ? '❌' : '✅'}</span>
-          <span>{feedback.msg}</span>
+          <div className="flex items-center gap-2">
+            <span>{feedback.type === 'error' ? '⚠️' : '✅'}</span>
+            <span>{feedback.msg}</span>
+          </div>
+          <button onClick={() => setFeedback(null)} className="text-xs opacity-70 hover:opacity-100">✕</button>
         </div>
       )}
 
-      {/* Cabeçalho Executivo */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-700/80 rounded-2xl p-5 shadow-xl">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      {/* Cabeçalho da Esteira e Filtro por Quadrimestre */}
+      <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 shadow-xl backdrop-blur-md">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2.5">
-              <span className="text-2xl">📡</span>
-              <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                Esteira Kanban da Fase de Planejamento (SIGA {ano})
-              </h1>
-              <span className="bg-blue-600/30 text-blue-300 border border-blue-500/40 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-                186 Processos Ativos
+            <div className="flex items-center gap-2">
+              <span className="text-2xl">🏛️</span>
+              <h2 className="text-xl font-bold text-white tracking-tight">
+                Esteira de Governança do Planejamento PLAC
+              </h2>
+              <span className="bg-blue-600/20 text-blue-400 text-xs px-2.5 py-0.5 rounded-full border border-blue-500/30 font-semibold">
+                Funil Oficial Telebras
               </span>
             </div>
-            <p className="text-xs text-slate-400 mt-1 max-w-4xl leading-relaxed">
-              Mapeamento em tempo real de todos os processos em tramitação preparatória interna no SIGA para contratação ainda em 2026.
-              Monitoramento de setores, custodiantes, desvio em relação à média e prevenção ativa de apagão orçamentário.
+            <p className="text-xs text-slate-400 mt-1">
+              Rito regimental: <span className="text-slate-300 font-medium">1. Levantamento</span> ➔{' '}
+              <span className="text-slate-300 font-medium">2. Validação Diretoria</span> (com Amarração SIGA) ➔{' '}
+              <span className="text-slate-300 font-medium">3. Consolidação GCC</span> ➔{' '}
+              <span className="text-slate-300 font-medium">4. Deliberação REDIR</span> ➔{' '}
+              <span className="text-slate-300 font-medium">5. Calendário Anual Vigente</span>.
             </p>
           </div>
 
-          {/* Botões de Ação e Acesso aos Entregáveis */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Seletor de Quadrimestre */}
+            <div className="bg-slate-900/90 p-1 rounded-xl border border-slate-700 flex items-center gap-1">
+              {[
+                { id: 'TODOS', label: 'Todos' },
+                { id: 'Q1', label: 'Q1 (Jan-Abr)' },
+                { id: 'Q2', label: 'Q2 (Mai-Ago)' },
+                { id: 'Q3', label: 'Q3 (Set-Dez)' },
+              ].map((q) => (
+                <button
+                  key={q.id}
+                  onClick={() => setQuadrimestre(q.id)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                    quadrimestre === q.id
+                      ? 'bg-blue-600 text-white shadow'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                  }`}
+                >
+                  {q.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Botão de Emissão de Minuta Consolidada REDIR */}
             <button
-              type="button"
-              onClick={fetchKanbanTelemetria}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-lg border border-slate-600 transition shadow-sm"
-              title="Recarregar esteira"
+              onClick={handleDownloadMinutaPdf}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition"
+              title="Gera PDF oficial consolidado para instrução da Ata da REDIR"
             >
-              <span>🔄</span>
-              <span>Atualizar</span>
+              <span>📑</span>
+              <span>Minuta Consolidada REDIR</span>
             </button>
-            <a
-              href="file:///Z:/PLAC-MVP/RELATORIO_EXECUTIVO_PLANEJAMENTO_KANBAN_SIGA_2026.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-600/60 rounded-lg text-xs font-bold transition shadow-sm"
-            >
-              <span>📄</span>
-              <span>Relatório PDF (3 págs)</span>
-            </a>
-            <a
-              href="file:///Z:/PLAC-MVP/BASE_PROCESSOS_PLANEJAMENTO_KANBAN_SIGA_2026.xlsx"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 border border-emerald-600/60 rounded-lg text-xs font-bold transition shadow-sm"
-            >
-              <span>📊</span>
-              <span>Planilha Excel (4 abas)</span>
-            </a>
           </div>
         </div>
 
-        {/* 5 Cartões Superiores de Telemetria (KPIs) */}
-        {kpis && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mt-5">
-            <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                Carteira de Planejamento
-              </span>
-              <div className="text-xl font-black text-white mt-1">
-                {kpis.total_processos} processos
+        {/* Barra de Cards Analíticos de Governança */}
+        {resumo && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-700/60">
+            {/* Card 1: Orçamento e Volume */}
+            <div className="bg-slate-900/60 border border-slate-700/60 rounded-xl p-4">
+              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                Volume no {quadrimestre === 'TODOS' ? 'Exercício' : quadrimestre}
               </div>
-              <span className="text-[10px] text-blue-400 font-semibold block mt-0.5">
-                {formatCurrency(kpis.valor_total_rs)} em trânsito
-              </span>
+              <div className="text-xl font-bold text-white mt-1">
+                {resumo.total_demandas} demandas
+              </div>
+              <div className="text-xs text-blue-400 font-semibold mt-0.5">
+                {formatBRL(resumo.orcamento_total)}
+              </div>
             </div>
 
-            <div className="bg-slate-800/80 border border-amber-500/30 rounded-xl p-3">
-              <span className="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">
-                Maior Gargalo: ETP &amp; Riscos
-              </span>
-              <div className="text-xl font-black text-amber-400 mt-1">
-                {colunas['2_ETP']?.length || 0} processos
+            {/* Card 2: Semáforo GCC */}
+            <div className={`border rounded-xl p-4 ${semaforo.bg}`}>
+              <div className="text-[11px] font-semibold uppercase tracking-wider flex items-center justify-between">
+                <span>Capacidade GCC</span>
+                <span className="text-[10px] font-bold">{semaforo.badge}</span>
               </div>
-              <span className="text-[10px] text-slate-400 font-medium block mt-0.5">
-                Média: 37,8 dias no setor (SLA 35d)
-              </span>
+              <div className="text-sm font-bold mt-1">
+                {semaforo.desc}
+              </div>
+              <div className="text-[10px] opacity-80 mt-1">
+                Limiar seguro: até 8 certames simultâneos
+              </div>
             </div>
 
-            <div className="bg-slate-800/80 border border-rose-500/30 rounded-xl p-3">
-              <span className="text-[10px] font-bold text-rose-300 uppercase tracking-wider block">
-                Gargalos Críticos (&gt;10d)
-              </span>
-              <div className="text-xl font-black text-rose-400 mt-1">
-                {kpis.gargalos_criticos} processos
+            {/* Card 3: Amarração SIGA */}
+            <div className="bg-slate-900/60 border border-slate-700/60 rounded-xl p-4">
+              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                <span>Conformidade SIGA</span>
+                <span className="text-xs">🔗</span>
               </div>
-              <span className="text-[10px] text-rose-300/80 font-medium block mt-0.5">
-                Desvio grave além do SLA
-              </span>
+              <div className="text-xl font-bold text-white mt-1">
+                {resumo.total_demandas - resumo.sem_siga_count} / {resumo.total_demandas}
+              </div>
+              <div className={`text-xs mt-0.5 ${resumo.sem_siga_count > 0 ? 'text-amber-400' : 'text-emerald-400'}`}>
+                {resumo.sem_siga_count > 0
+                  ? `⚠️ ${resumo.sem_siga_count} sem número TLB-PRO`
+                  : '✅ 100% autuadas no SIGA'}
+              </div>
             </div>
 
-            <div className="bg-slate-800/80 border border-red-600/40 rounded-xl p-3 bg-red-950/20">
-              <span className="text-[10px] font-bold text-red-300 uppercase tracking-wider block">
-                Risco de Não Contratar 2026
-              </span>
-              <div className="text-xl font-black text-red-400 mt-1 flex items-center gap-1.5">
-                <span>🔥</span>
-                <span>{kpis.risco_apagao_2026} demandas</span>
+            {/* Card 4: Urgências Fabricadas */}
+            <div className="bg-slate-900/60 border border-slate-700/60 rounded-xl p-4">
+              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                <span>Urgências Fabricadas</span>
+                <span className="text-xs">🚨</span>
               </div>
-              <span className="text-[10px] text-red-200 font-medium block mt-0.5">
-                Restam &lt; 60 dias úteis p/ licitar
-              </span>
-            </div>
-
-            <div className="bg-slate-800/80 border border-slate-700 rounded-xl p-3">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                Tempo Médio de Retenção
-              </span>
-              <div className="text-xl font-black text-slate-200 mt-1">
-                {kpis.tempo_medio_global_dias} dias úteis
+              <div className="text-xl font-bold text-white mt-1">
+                {resumo.urgencias_fabricadas_count} alertas
               </div>
-              <span className="text-[10px] text-emerald-400 font-semibold block mt-0.5">
-                Média global entre etapas
-              </span>
+              <div className={`text-xs mt-0.5 ${resumo.urgencias_fabricadas_count > 0 ? 'text-rose-400' : 'text-slate-400'}`}>
+                {resumo.urgencias_fabricadas_count > 0
+                  ? 'Inércia da área ou data fatal vencida'
+                  : 'Nenhum desvio detectado'}
+              </div>
             </div>
           </div>
         )}
       </div>
 
-      {/* Barra de Filtros Interativos */}
-      <div className="bg-slate-850 border border-slate-750 p-3.5 rounded-xl shadow flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-3">
-          {/* Seletor de Diretoria */}
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs font-bold text-slate-400">Diretoria:</span>
-            <select
-              value={diretoria}
-              onChange={(e) => setDiretoria(e.target.value)}
-              className="bg-slate-900 border border-slate-700 text-white text-xs rounded-lg px-2.5 py-1.5 font-medium focus:ring-1 focus:ring-blue-500 outline-none"
-            >
-              <option value="TODAS">Todas as Diretorias</option>
-              <option value="3000">3000 - DTO (Técnico-Operacional)</option>
-              <option value="2000">2000 - DAFRI (Administrativo-Financeira)</option>
-              <option value="4000">4000 - DC (Comercial)</option>
-              <option value="1000">1000 - PR (Presidência)</option>
-              <option value="5000">5000 - DGOV (Governança)</option>
-            </select>
-          </div>
-
-          {/* Seletor de Criticidade/Risco */}
-          <div className="flex items-center gap-1.5">
-            <span className="text-xs font-bold text-slate-400">Criticidade:</span>
-            <select
-              value={risco}
-              onChange={(e) => setRisco(e.target.value)}
-              className="bg-slate-900 border border-slate-700 text-white text-xs rounded-lg px-2.5 py-1.5 font-medium focus:ring-1 focus:ring-blue-500 outline-none"
-            >
-              <option value="TODOS">Todos os Prazos</option>
-              <option value="CRITICOS">🚨 Apenas Gargalos Críticos (&gt;10d)</option>
-              <option value="RISCO_2026">🔥 Risco de Não Contratar em 2026</option>
-              <option value="ATENCAO">⚠️ Em Atenção (&gt;0d)</option>
-            </select>
-          </div>
+      {/* Barra de Navegação Horizontal das Colunas do Kanban */}
+      <div className="bg-slate-850 border border-slate-700/80 rounded-2xl px-5 py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-md">
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-950 border border-blue-600/50 text-blue-300 font-bold text-xs shadow-sm">
+            <span>👁️</span> Exibindo 3 Colunas com Largura Ampla
+          </span>
+          <span className="text-xs text-slate-300 hidden sm:inline">
+            Role para o lado ou clique nos botões para navegar entre <b>1. Levantamento</b>, <b>2. Validação</b>, <b>3. Consolidação</b> e puxar <b>4. Deliberação REDIR</b> e <b>5. Calendário Oficial</b>.
+          </span>
         </div>
 
-        {/* Campo de Busca Rápida */}
-        <div className="relative w-full md:w-80">
-          <input
-            type="text"
-            placeholder="Buscar processo, objeto, setor ou responsável..."
-            value={busca}
-            onChange={(e) => setBusca(e.target.value)}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
-          />
-          <span className="absolute left-2.5 top-2 text-slate-500 text-xs">🔍</span>
-          {busca && (
-            <button
-              onClick={() => setBusca('')}
-              className="absolute right-2.5 top-1.5 text-slate-400 hover:text-white text-xs"
-            >
-              ✕
-            </button>
-          )}
+        {/* Controles de Rolagem Rápida */}
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            type="button"
+            onClick={() => scrollToFase('inicio')}
+            className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-300 hover:text-white border border-slate-600 rounded-xl text-xs font-semibold transition flex items-center gap-1"
+            title="Ir para o início: 1. Levantamento, 2. Validação e 3. Consolidação"
+          >
+            <span>⏮️</span> Início (1 a 3)
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollKanban(-1)}
+            className="p-1.5 px-2.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 border border-slate-600 rounded-xl text-xs font-bold transition flex items-center gap-1"
+            title="Rolar para a esquerda"
+          >
+            ◀
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollKanban(1)}
+            className="p-1.5 px-2.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 border border-slate-600 rounded-xl text-xs font-bold transition flex items-center gap-1"
+            title="Rolar para a direita"
+          >
+            ▶
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollToFase('deliberacao')}
+            className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 active:scale-95 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-blue-900/30"
+            title="Avançar diretamente para 4. Deliberação REDIR e 5. Calendário Oficial"
+          >
+            <span>Fases 4 &amp; 5</span> <span>⏭️</span>
+          </button>
         </div>
       </div>
 
-      {/* Grid Principal: As 5 Colunas da Esteira Kanban */}
+      {/* 5 Colunas do Kanban de Governança com Scroll Horizontal */}
       {loading ? (
-        <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-16 text-center space-y-3">
-          <div className="inline-block animate-spin text-3xl">⚙️</div>
-          <div className="text-sm font-bold text-slate-300">
-            Sincronizando telemetria dos 186 processos no SIGA...
-          </div>
-          <p className="text-xs text-slate-500">
-            Calculando médias históricas, desvios e viabilidade de contratação em 2026.
-          </p>
+        <div className="text-center py-20 text-slate-400">
+          <div className="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500 mb-3"></div>
+          <div className="text-sm font-medium">Carregando Esteira de Governança do PLAC...</div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 items-start">
-          {colunasConfig.map((colCfg) => {
-            const itensColuna = colunas[colCfg.id] || [];
-            return (
-              <div
-                key={colCfg.id}
-                className={`bg-slate-900/90 border border-slate-800 rounded-2xl flex flex-col shadow-lg overflow-hidden ${colCfg.cor_header}`}
-              >
-                {/* Cabeçalho da Coluna */}
-                <div className="p-3.5 bg-slate-850 border-b border-slate-800 flex flex-col gap-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xs font-black text-white tracking-tight">
-                      {colCfg.titulo}
-                    </h3>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${colCfg.cor_badge}`}>
-                      {itensColuna.length}
-                    </span>
-                  </div>
-                  <div className="text-[10px] text-slate-400 flex items-center justify-between mt-0.5">
-                    <span>{colCfg.subtitulo}</span>
-                    <span className="font-semibold text-slate-300">
-                      {formatCurrency(colCfg.valor_total)}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between text-[9px] text-slate-500 pt-1 border-t border-slate-800/60 mt-1">
-                    <span>SLA: {colCfg.sla_etapa}d úteis</span>
-                    <span>Média Real: {colCfg.media_historica}d</span>
-                  </div>
-                </div>
+        <div
+          ref={kanbanScrollRef}
+          className="flex gap-4 overflow-x-auto pb-6 pt-1 items-start scroll-smooth w-full"
+          style={{
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#3b82f6 #1e293b'
+          }}
+        >
+          {/* FASE 1: Levantamento de Necessidades */}
+          <KanbanColuna
+            titulo="1. Levantamento"
+            subtitulo="Área Demandante"
+            cor="border-slate-600 bg-slate-800/40"
+            badgeCor="bg-slate-700 text-slate-300"
+            icon="📝"
+            demandas={colunas.levantamento}
+            onOpenCertidao={setSelectedDemandForCertidao}
+            onAvancar={handleAvancarFase}
+            onDevolver={(d) => setDevolverTarget(d)}
+            actionLoading={actionLoading}
+            faseAtual="AGUARDANDO_VALIDACAO"
+          />
 
-                {/* Lista de Cards da Coluna */}
-                <div className="p-2.5 space-y-2.5 max-h-[750px] overflow-y-auto pr-1">
-                  {itensColuna.length === 0 ? (
-                    <div className="text-center py-10 px-2 text-slate-500 text-xs italic">
-                      Nenhum processo nesta etapa com os filtros selecionados.
-                    </div>
-                  ) : (
-                    itensColuna.map((proc) => {
-                      const isCritico = proc.status_prazo_badge === 'CRITICO';
-                      const isAtencao = proc.status_prazo_badge === 'ATENCAO';
-                      const isRiscoApagao = proc.risco_nivel === 'ALTO';
+          {/* FASE 2: Validação da Diretoria */}
+          <KanbanColuna
+            titulo="2. Validação Diretor"
+            subtitulo="Julgamento Estratégico"
+            cor="border-blue-700/60 bg-blue-950/20"
+            badgeCor="bg-blue-600/30 text-blue-300"
+            icon="⚖️"
+            demandas={colunas.validacao_diretor}
+            onOpenCertidao={setSelectedDemandForCertidao}
+            onAvancar={handleAvancarFase}
+            onDevolver={(d) => setDevolverTarget(d)}
+            actionLoading={actionLoading}
+            faseAtual="VALIDADO_DIRETOR"
+          />
 
-                      return (
-                        <div
-                          key={proc.id}
-                          className={`bg-slate-800/90 hover:bg-slate-750 border transition-all rounded-xl p-3 shadow-md flex flex-col gap-2 relative ${
-                            isCritico
-                              ? 'border-rose-500/80 shadow-rose-950/20'
-                              : isAtencao
-                              ? 'border-amber-500/60 shadow-amber-950/10'
-                              : 'border-slate-700/80'
-                          }`}
-                        >
-                          {/* Topo do Card: Processo SIGA + Origem PLAC + Prioridade */}
-                          <div className="flex items-start justify-between gap-1.5">
-                            <div>
-                              <span className="text-xs font-mono font-black text-blue-300 block">
-                                {proc.numero_processo_siga}
-                              </span>
-                              <span className="text-[9px] font-bold text-slate-400">
-                                {proc.cod_verif}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <span
-                                className={`text-[8.5px] font-bold px-1.5 py-0.5 rounded border ${
-                                  proc.origem_plac === 'EXTRAORDINÁRIO'
-                                    ? 'bg-rose-950/80 text-rose-300 border-rose-600/50'
-                                    : proc.origem_plac.includes('2025')
-                                    ? 'bg-amber-950/80 text-amber-300 border-amber-600/50'
-                                    : 'bg-blue-950/80 text-blue-300 border-blue-600/50'
-                                }`}
-                              >
-                                {proc.origem_plac === 'EXTRAORDINÁRIO' ? '⚠️ Extraordinário (Art. 34/41)' : `${proc.origem_plac} (Art. 39)`}
-                              </span>
-                              <span
-                                className={`text-[8.5px] font-bold px-1.5 py-0.5 rounded ${
-                                  proc.prioridade === 'ALTA'
-                                    ? 'bg-rose-950 text-rose-300'
-                                    : 'bg-slate-700 text-slate-300'
-                                }`}
-                              >
-                                {proc.prioridade === 'ALTA' ? 'Prioridade ALTA (1º Q)' : proc.prioridade}
-                              </span>
-                            </div>
-                          </div>
+          {/* FASE 3: Consolidação GCC & SLA */}
+          <KanbanColuna
+            titulo="3. Consolidação GCC"
+            subtitulo="Instrução & 10 SLAs"
+            cor="border-purple-700/60 bg-purple-950/20"
+            badgeCor="bg-purple-600/30 text-purple-300"
+            icon="🏢"
+            demandas={colunas.consolidacao_gcc}
+            onOpenCertidao={setSelectedDemandForCertidao}
+            onAvancar={handleAvancarFase}
+            onDevolver={(d) => setDevolverTarget(d)}
+            actionLoading={actionLoading}
+            faseAtual="CONSOLIDADO"
+          />
 
-                          {/* Objeto e Valor */}
-                          <div>
-                            <p className="text-[11px] font-medium text-slate-200 line-clamp-2 leading-snug">
-                              {proc.objeto}
-                            </p>
-                            <div className="text-xs font-black text-emerald-400 mt-1">
-                              {formatCurrency(proc.valor_estimado_2026)}
-                            </div>
-                          </div>
+          {/* FASE 4: Deliberação REDIR & DAFRI */}
+          <KanbanColuna
+            titulo="4. Deliberação REDIR"
+            subtitulo="Parecer DAFRI & Colegiado"
+            cor="border-amber-700/60 bg-amber-950/20"
+            badgeCor="bg-amber-600/30 text-amber-300"
+            icon="🏛️"
+            demandas={colunas.deliberacao_redir}
+            onOpenCertidao={setSelectedDemandForCertidao}
+            onAvancar={handleAvancarFase}
+            onDevolver={(d) => setDevolverTarget(d)}
+            actionLoading={actionLoading}
+            faseAtual="DELIBERACAO_REDIR"
+          />
 
-                          {/* Localização e Custódia (Onde está e com quem está) */}
-                          <div className="bg-slate-850/90 rounded-lg p-2 border border-slate-750 text-[10px] space-y-1">
-                            <div className="flex items-center gap-1.5 text-slate-300">
-                              <span title="Lotação Atual">🏢</span>
-                              <span className="font-bold text-indigo-300">
-                                {proc.setor_atual_sigla}
-                              </span>
-                              <span className="text-slate-400 truncate">
-                                — {proc.setor_atual_nome.split('-')[1] || proc.setor_atual_nome}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-1.5 text-slate-300">
-                              <span title="Responsável / Custodiante">👤</span>
-                              <span className="font-semibold text-slate-200 truncate">
-                                {proc.custodiante_atual}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Status da Ação em Andamento */}
-                          <div className="text-[10px] text-slate-400 flex items-start gap-1">
-                            <span className="text-xs">⚙️</span>
-                            <span className="line-clamp-2 leading-tight">
-                              <b>Ação:</b> {proc.acao_em_andamento}
-                            </span>
-                          </div>
-
-                          {/* Telemetria Temporal & Desvio da Média */}
-                          <div className="space-y-1 pt-1 border-t border-slate-750/80">
-                            <div className="flex items-center justify-between text-[10px]">
-                              <span className="text-slate-400 font-medium">
-                                Tempo no Setor:
-                              </span>
-                              <span
-                                className={`font-mono font-bold ${
-                                  isCritico
-                                    ? 'text-rose-400'
-                                    : isAtencao
-                                    ? 'text-amber-400'
-                                    : 'text-emerald-400'
-                                }`}
-                              >
-                                {proc.dias_no_setor} dias (SLA: {proc.sla_etapa}d)
-                              </span>
-                            </div>
-
-                            {/* Badge Diferença em Relação à Média */}
-                            <div
-                              className={`text-[9.5px] px-2 py-1 rounded font-semibold flex items-center justify-between ${
-                                proc.desvio_media > 0
-                                  ? 'bg-rose-950/60 text-rose-300 border border-rose-800/40'
-                                  : 'bg-emerald-950/60 text-emerald-300 border border-emerald-800/40'
-                              }`}
-                            >
-                              <span>{proc.desvio_media > 0 ? '⚠️' : '✅'} Comparado à Média:</span>
-                              <span className="font-bold">{proc.diff_media_str}</span>
-                            </div>
-                          </div>
-
-                          {/* Alerta de Risco para 2026 */}
-                          {isRiscoApagao && (
-                            <div className="bg-red-950/80 border border-red-500/60 rounded-lg p-1.5 text-[9.5px] text-red-200 flex items-start gap-1 animate-pulse font-bold">
-                              <span>🔥</span>
-                              <span className="leading-tight">
-                                Risco Alto: Restam &lt; 60 dias úteis para certame em 2026.
-                              </span>
-                            </div>
-                          )}
-
-                          {/* Documentos Produzidos & Próxima Peça Obrigatória */}
-                          <div className="text-[9.5px] space-y-1">
-                            <div className="flex flex-wrap gap-1">
-                              {proc.documentos_produzidos.slice(0, 3).map((docName, i) => (
-                                <span
-                                  key={i}
-                                  className="bg-slate-700/60 text-slate-300 px-1.5 py-0.5 rounded text-[8.5px] border border-slate-650"
-                                >
-                                  ✓ {docName.split('-')[0].trim()}
-                                </span>
-                              ))}
-                            </div>
-                            <div className="text-[9px] text-amber-300 font-semibold truncate">
-                              🛑 <b>Pendente:</b> {proc.proximo_documento_pendente}
-                            </div>
-                          </div>
-
-                          {/* Botão para Abrir Dossiê Completo */}
-                          <button
-                            type="button"
-                            onClick={() => setSelectedProcess(proc)}
-                            className="mt-1 w-full py-1.5 bg-slate-700/70 hover:bg-blue-600 text-slate-200 hover:text-white rounded-lg text-[10px] font-bold transition flex items-center justify-center gap-1 shadow-sm"
-                          >
-                            <span>🔍</span>
-                            <span>Ver Histórico no SIGA</span>
-                          </button>
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          {/* FASE 5: Calendário de Contratações Vigentes */}
+          <KanbanColuna
+            titulo="5. Calendário Oficial"
+            subtitulo="Homologado & Vigente"
+            cor="border-emerald-700/60 bg-emerald-950/20"
+            badgeCor="bg-emerald-600/30 text-emerald-300"
+            icon="✅"
+            demandas={colunas.calendario_vigente}
+            onOpenCertidao={setSelectedDemandForCertidao}
+            onAvancar={handleAvancarFase}
+            onDevolver={(d) => setDevolverTarget(d)}
+            actionLoading={actionLoading}
+            faseAtual="VIGENTE"
+          />
         </div>
       )}
 
-      {/* Modal de Detalhes e Dossiê do Processo */}
-      {selectedProcess && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl animate-scaleIn text-slate-100 flex flex-col max-h-[90vh]">
-            {/* Topo do Modal */}
-            <div className="bg-slate-850 p-4 border-b border-slate-700 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">📁</span>
-                <div>
-                  <h3 className="text-base font-black text-white">
-                    Dossiê do Processo: {selectedProcess.numero_processo_siga}
-                  </h3>
-                  <span className="text-xs text-slate-400">
-                    {selectedProcess.cod_verif} | {selectedProcess.origem_plac} | {selectedProcess.diretoria}
-                  </span>
-                </div>
-              </div>
+      {/* Modal de Certidão e Amarração do SIGA */}
+      {selectedDemandForCertidao && (
+        <CertidaoVinculacaoModal
+          demand={selectedDemandForCertidao}
+          onClose={() => setSelectedDemandForCertidao(null)}
+          onSuccess={() => {
+            setSelectedDemandForCertidao(null);
+            fetchKanban();
+            showFeedback('Processo SIGA vinculado com sucesso à demanda!');
+          }}
+        />
+      )}
+
+      {/* Modal de Devolução para Ajustes */}
+      {devolverTarget && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-slate-850 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-700 pb-3">
+              <h3 className="text-base font-bold text-white flex items-center gap-2">
+                <span>↩️</span> Devolver Demanda para Ajustes
+              </h3>
+              <button onClick={() => setDevolverTarget(null)} className="text-slate-400 hover:text-white">✕</button>
+            </div>
+
+            <p className="text-xs text-slate-300">
+              A demanda <span className="font-mono font-bold text-blue-400">{devolverTarget.codigo_rastreio_plac || '#' + devolverTarget.id}</span> retornará para a etapa anterior para correção pela Área Demandante.
+            </p>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">
+                Motivo / Justificativa da Devolução (Obrigatório):
+              </label>
+              <textarea
+                value={motivoDevolucao}
+                onChange={(e) => setMotivoDevolucao(e.target.value)}
+                placeholder="Descreva detalhadamente o ajuste necessário no ETP, justificativa ou quantitativo..."
+                rows={4}
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+              />
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-2">
               <button
-                onClick={() => setSelectedProcess(null)}
-                className="text-slate-400 hover:text-white text-lg font-bold p-1"
+                onClick={() => setDevolverTarget(null)}
+                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700"
               >
-                ✕
+                Cancelar
               </button>
-            </div>
-
-            {/* Conteúdo do Modal */}
-            <div className="p-5 overflow-y-auto space-y-4 text-xs">
-              {/* Objeto Completo */}
-              <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700 space-y-1">
-                <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px]">
-                  Objeto da Contratação
-                </span>
-                <p className="text-sm font-medium text-slate-200 leading-relaxed">
-                  {selectedProcess.objeto}
-                </p>
-                <div className="flex items-center justify-between pt-2 border-t border-slate-700/60 mt-2">
-                  <span className="text-slate-400">Valor Estimado:</span>
-                  <span className="text-base font-black text-emerald-400">
-                    {formatCurrency(selectedProcess.valor_estimado_2026)}
-                  </span>
-                </div>
-              </div>
-
-              {/* Informações de Localização, Custódia e Prazos */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-750">
-                  <span className="text-[10px] text-slate-400 block">Lotação Atual</span>
-                  <span className="font-bold text-white text-xs mt-0.5 block">
-                    {selectedProcess.setor_atual_sigla}
-                  </span>
-                  <span className="text-[9px] text-slate-400 truncate block">
-                    {selectedProcess.setor_atual_nome}
-                  </span>
-                </div>
-
-                <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-750">
-                  <span className="text-[10px] text-slate-400 block">Custodiante</span>
-                  <span className="font-bold text-white text-xs mt-0.5 block truncate">
-                    {selectedProcess.custodiante_atual}
-                  </span>
-                  <span className="text-[9px] text-indigo-300 block">
-                    Responsável pelos autos
-                  </span>
-                </div>
-
-                <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-750">
-                  <span className="text-[10px] text-slate-400 block">Permanência</span>
-                  <span className="font-bold text-rose-300 text-xs mt-0.5 block">
-                    {selectedProcess.dias_no_setor} dias úteis
-                  </span>
-                  <span className="text-[9px] text-slate-400 block">
-                    SLA: {selectedProcess.sla_etapa}d | Média: {selectedProcess.media_etapa}d
-                  </span>
-                </div>
-
-                <div className="bg-slate-800/60 p-2.5 rounded-lg border border-slate-750">
-                  <span className="text-[10px] text-slate-400 block">Risco Exercício 2026</span>
-                  <span
-                    className={`font-black text-xs mt-0.5 block ${
-                      selectedProcess.risco_nivel === 'ALTO'
-                        ? 'text-red-400'
-                        : selectedProcess.risco_nivel === 'MEDIO'
-                        ? 'text-amber-400'
-                        : 'text-emerald-400'
-                    }`}
-                  >
-                    {selectedProcess.risco_nivel}
-                  </span>
-                  <span className="text-[9px] text-slate-400 block truncate">
-                    Viabilidade de licitar
-                  </span>
-                </div>
-              </div>
-
-              {/* Linha do Tempo de Tramitação no SIGA */}
-              <div className="space-y-2">
-                <span className="font-bold text-slate-300 text-xs flex items-center gap-1.5">
-                  <span>📜</span> Histórico Completo de Tramitações e Despachos no SIGA
-                </span>
-                <div className="border-l-2 border-blue-500/40 ml-2 pl-4 space-y-3">
-                  {selectedProcess.timeline_tramitacao.map((item, idx) => (
-                    <div key={idx} className="relative group">
-                      <div className="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-slate-900" />
-                      <div className="bg-slate-800/70 p-2.5 rounded-lg border border-slate-750 space-y-1">
-                        <div className="flex items-center justify-between text-[10px] text-slate-400">
-                          <span className="font-bold text-blue-300">{item.setor}</span>
-                          <span className="font-mono">{item.data}</span>
-                        </div>
-                        <p className="text-slate-200 text-xs leading-snug">
-                          {item.despacho}
-                        </p>
-                        <div className="text-[9px] text-slate-400 flex items-center gap-1 pt-1 border-t border-slate-700/40">
-                          <span>👤 Servidor:</span>
-                          <span className="font-medium text-slate-300">{item.servidor}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Peças Juntadas e Próximo Passo */}
-              <div className="bg-slate-800/60 p-3 rounded-xl border border-slate-750 space-y-2">
-                <div className="font-bold text-slate-300 text-xs flex items-center gap-1.5">
-                  <span>📎</span> Documentos Produzidos no Processo Eletrônico
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedProcess.documentos_produzidos.map((doc, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-slate-700 px-2 py-1 rounded text-slate-200 text-[10px] font-medium border border-slate-600"
-                    >
-                      📄 {doc}
-                    </span>
-                  ))}
-                </div>
-                <div className="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs">
-                  <span className="text-slate-400 font-medium">Próxima Peça Obrigatória:</span>
-                  <span className="font-bold text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/40">
-                    {selectedProcess.proximo_documento_pendente}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Rodapé do Modal */}
-            <div className="p-3 bg-slate-850 border-t border-slate-700 flex items-center justify-between">
-              <span className="text-[10px] text-slate-400">
-                Modelo de Contratação: <b>{selectedProcess.modelo_contratacao}</b>
-              </span>
               <button
-                type="button"
-                onClick={() => setSelectedProcess(null)}
-                className="px-4 py-1.5 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-xs font-bold transition"
+                onClick={handleConfirmDevolver}
+                disabled={actionLoading}
+                className="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold transition disabled:opacity-50"
               >
-                Fechar Dossiê
+                {actionLoading ? 'Processando...' : 'Confirmar Devolução'}
               </button>
             </div>
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+// Subcomponente de Coluna Kanban com Largura Ampla (Exibe até 3 colunas e scroll para o resto)
+function KanbanColuna({
+  titulo,
+  subtitulo,
+  cor,
+  badgeCor,
+  icon,
+  demandas = [],
+  onOpenCertidao,
+  onAvancar,
+  onDevolver,
+  actionLoading,
+  faseAtual
+}) {
+  return (
+    <div
+      className={`border rounded-2xl p-4 shadow-xl flex flex-col min-h-[580px] shrink-0 transition-all ${cor}`}
+      style={{
+        width: 'calc((100% - 2rem) / 3)',
+        minWidth: '380px',
+        maxWidth: '520px'
+      }}
+    >
+      {/* Topo da Coluna */}
+      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-700/60">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">{icon}</span>
+          <div>
+            <h3 className="text-sm font-bold text-white leading-tight">{titulo}</h3>
+            <p className="text-[11px] text-slate-400">{subtitulo}</p>
+          </div>
+        </div>
+        <span className={`text-xs font-bold px-2.5 py-1 rounded-full shadow-sm ${badgeCor}`}>
+          {demandas.length} {demandas.length === 1 ? 'item' : 'itens'}
+        </span>
+      </div>
+
+      {/* Lista de Cartões */}
+      <div className="space-y-3.5 flex-1 overflow-y-auto max-h-[720px] pr-1.5">
+        {demandas.length === 0 ? (
+          <div className="text-center py-16 text-xs text-slate-500 italic bg-slate-900/30 rounded-xl border border-dashed border-slate-800">
+            Nenhuma demanda nesta fase
+          </div>
+        ) : (
+          demandas.map((d) => (
+            <KanbanCard
+              key={d.id}
+              demand={d}
+              faseAtual={faseAtual}
+              onOpenCertidao={onOpenCertidao}
+              onAvancar={onAvancar}
+              onDevolver={onDevolver}
+              actionLoading={actionLoading}
+            />
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+// Subcomponente de Cartão de Demanda com Layout Amplo e Espaçoso
+function KanbanCard({
+  demand,
+  faseAtual,
+  onOpenCertidao,
+  onAvancar,
+  onDevolver,
+  actionLoading
+}) {
+  const formatBRL = (val) => {
+    return Number(val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  };
+
+  const temSiga = Boolean(demand.siga_process_number && demand.siga_process_number.trim());
+  const codRastreio = demand.codigo_rastreio_plac || `PLAC-${demand.id}`;
+
+  return (
+    <div className="bg-slate-900/95 border border-slate-700 hover:border-blue-500/60 rounded-xl p-4 shadow-md hover:shadow-xl transition-all space-y-3 group">
+      {/* Badges de Topo */}
+      <div className="flex items-center justify-between gap-2 flex-wrap">
+        <span className="font-mono text-xs font-bold bg-blue-950/90 text-blue-300 border border-blue-700/60 px-2 py-0.5 rounded shadow-sm">
+          🏷️ {codRastreio}
+        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 shadow-sm">
+            {demand.quadrimestre_alvo || 'Q-N/D'}
+          </span>
+          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-800/80 text-slate-400 border border-slate-700">
+            {demand.year || 2026}
+          </span>
+        </div>
+      </div>
+
+      {/* Objeto e Informações com Espaçamento Amplo */}
+      <div>
+        <h4 className="text-sm font-medium text-slate-100 line-clamp-3 leading-snug group-hover:text-white transition">
+          {demand.description}
+        </h4>
+        <div className="text-xs text-slate-400 mt-2 flex items-center justify-between pt-1 border-t border-slate-800/60">
+          <span className="font-medium text-slate-300">{demand.directorate || 'Diretoria'}</span>
+          <span className="text-emerald-400 font-bold text-sm">{formatBRL(demand.estimated_value)}</span>
+        </div>
+      </div>
+
+      {/* Status da Amarração SIGA */}
+      <div className="text-xs">
+        {temSiga ? (
+          <div className="flex items-center justify-between bg-emerald-950/50 border border-emerald-800/50 rounded-lg px-2.5 py-1.5 text-emerald-300 shadow-sm">
+            <span className="font-mono font-bold text-[11px]">📁 {demand.siga_process_number}</span>
+            <span className="text-[10px] text-emerald-300 bg-emerald-900/60 border border-emerald-700 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">
+              Autuado
+            </span>
+          </div>
+        ) : (
+          <div className="bg-rose-950/50 border border-rose-800/50 rounded-lg px-2.5 py-1.5 text-rose-300 flex items-center justify-between shadow-sm">
+            <span className="font-medium text-[11px]">⚠️ Processo SIGA Não Autuado</span>
+            <span className="text-[10px] text-rose-300 bg-rose-900/60 border border-rose-700 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">
+              Pendente
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Modalidade e SLA (se já consolidados) */}
+      {demand.procurement_type && (
+        <div className="text-xs bg-slate-800/90 rounded-lg p-2 text-slate-300 flex items-center justify-between border border-slate-700/60">
+          <span className="text-[11px]">Modalidade: <b className="text-slate-100">{demand.procurement_type}</b></span>
+          {demand.sla_days && (
+            <span className="text-blue-400 font-bold text-[11px] bg-blue-950/80 px-2 py-0.5 rounded border border-blue-800/60">
+              {demand.sla_days} dias úteis
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Alerta de Urgência Fabricada / Inércia */}
+      {demand.needs_anticipation && (
+        <div className="text-xs bg-amber-950/60 border border-amber-800/60 rounded-lg p-2 text-amber-300 flex items-center gap-1.5">
+          <span>⚠️</span>
+          <span className="text-[11px] font-medium leading-tight">Alerta de Inércia: Exige antecipação de prazo</span>
+        </div>
+      )}
+
+      {/* Barra de Ações do Cartão */}
+      <div className="pt-2 flex items-center justify-between gap-2 border-t border-slate-800">
+        {/* Botão de Certidão & SIGA */}
+        <button
+          onClick={() => onOpenCertidao(demand)}
+          className="flex-1 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 border border-slate-700 hover:border-slate-500 text-xs font-semibold py-1.5 px-2.5 rounded-lg transition text-center flex items-center justify-center gap-1 shadow-sm"
+          title="Ver Certidão Oficial em PDF e Vincular Processo SIGA"
+        >
+          <span>📄</span>
+          <span>Certidão &amp; SIGA</span>
+        </button>
+
+        {/* Botão de Transição de Fase */}
+        {faseAtual !== 'VIGENTE' && (
+          <button
+            onClick={() => onAvancar(demand)}
+            disabled={actionLoading}
+            className={`flex-1 text-xs font-bold py-1.5 px-2.5 rounded-lg transition text-center shadow-md active:scale-95 flex items-center justify-center gap-1 ${
+              !temSiga && faseAtual === 'AGUARDANDO_VALIDACAO'
+                ? 'bg-rose-900/60 hover:bg-rose-800 border border-rose-700/60 text-rose-200 cursor-not-allowed'
+                : 'bg-blue-600 hover:bg-blue-500 text-white'
+            }`}
+            title={!temSiga && faseAtual === 'AGUARDANDO_VALIDACAO' ? 'Bloqueado: Requer processo SIGA autuado' : 'Avançar para a próxima fase'}
+          >
+            {!temSiga && faseAtual === 'AGUARDANDO_VALIDACAO' ? (
+              <><span>🔒</span><span>Bloqueado</span></>
+            ) : (
+              <><span>Avançar</span><span>➔</span></>
+            )}
+          </button>
+        )}
+
+        {/* Botão de Devolver se não estiver na fase 1 */}
+        {faseAtual !== 'AGUARDANDO_VALIDACAO' && faseAtual !== 'VIGENTE' && (
+          <button
+            onClick={() => onDevolver(demand)}
+            className="bg-slate-800 hover:bg-amber-900/50 hover:text-amber-200 text-slate-400 border border-slate-700 text-xs font-bold py-1.5 px-2.5 rounded-lg transition active:scale-95 shadow-sm"
+            title="Devolver demanda para ajustes da Área Demandante"
+          >
+            ↩️
+          </button>
+        )}
+      </div>
     </div>
   );
 }

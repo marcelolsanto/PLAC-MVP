@@ -24,3 +24,7 @@ postgres_data/
 .vscode/
 .idea/
 *.swp
+
+# Temporary & Lock files
+~$*
+*.tmp

@@ -23,6 +23,21 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const handleAuthSuccess = (data) => {
+    const { access, refresh } = data;
+    localStorage.setItem('access_token', access);
+    localStorage.setItem('refresh_token', refresh);
+    const decoded = parseJwt(access);
+    const userObj = {
+      username: decoded?.username || data.user?.username,
+      role: decoded?.role || data.user?.role || 'DEMANDANTE',
+      email: data.user?.email,
+      department: data.user?.department,
+    };
+    setUser(userObj);
+    return userObj;
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (token) {
@@ -41,25 +56,19 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     const response = await api.post('/token/', { username, password });
-    const { access, refresh } = response.data;
-    localStorage.setItem('access_token', access);
-    localStorage.setItem('refresh_token', refresh);
-    const decoded = parseJwt(access);
-    setUser({
-      username: decoded?.username || username,
-      role: decoded?.role || 'DEMANDANTE',
-    });
-    return response.data;
+    return handleAuthSuccess(response.data);
   };
 
   const logout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    sessionStorage.removeItem('oauth_state');
+    sessionStorage.removeItem('oauth_code_verifier');
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, login, logout, handleAuthSuccess, loading, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );

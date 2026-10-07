@@ -68,10 +68,22 @@ export default function CertidaoVinculacaoModal({ demandId, initialSigaNumber = 
     }
   };
 
+  const urlCertidaoPdf = (inline) =>
+    `${api.defaults.baseURL}/planejamento/demandas/${demandId}/emitir-certidao-pdf/${inline ? '?inline=1' : ''}`;
+
   const baixarPdf = async () => {
+    setFeedback(null);
+    // 1) Abre o PDF preenchido em nova aba. Precisa ser síncrono no clique,
+    //    senão o bloqueador de pop-ups do navegador barra a janela.
+    const novaAba = window.open(urlCertidaoPdf(true), '_blank');
+    if (novaAba) {
+      novaAba.opener = null;
+      return;
+    }
+
+    // 2) Pop-up bloqueado: baixa o arquivo via Blob.
     try {
       setBaixandoPdf(true);
-      setFeedback(null);
       const res = await api.get(`/planejamento/demandas/${demandId}/emitir-certidao-pdf/`, {
         responseType: 'blob'
       });
@@ -84,21 +96,12 @@ export default function CertidaoVinculacaoModal({ demandId, initialSigaNumber = 
       document.body.appendChild(link);
       link.click();
       link.remove();
-      window.URL.revokeObjectURL(downloadUrl);
+      // Revogar imediatamente aborta o download em alguns navegadores
+      setTimeout(() => window.URL.revokeObjectURL(downloadUrl), 60000);
+      setFeedback({ tipo: 'sucesso', msg: 'Pop-up bloqueado pelo navegador: a certidão foi salva na pasta Downloads.' });
     } catch (err) {
       console.error('Erro ao baixar certidão PDF via Blob:', err);
-      try {
-        const directUrl = `http://${window.location.hostname}:8085/api/planejamento/demandas/${demandId}/emitir-certidao-pdf/`;
-        const link = document.createElement('a');
-        link.href = directUrl;
-        link.setAttribute('download', `Certidao_PLAC_${demandId}.pdf`);
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      } catch (fallbackErr) {
-        setFeedback({ tipo: 'erro', msg: 'Erro ao gerar ou baixar o arquivo PDF da certidão.' });
-      }
+      setFeedback({ tipo: 'erro', msg: 'Erro ao gerar ou baixar o arquivo PDF da certidão.' });
     } finally {
       setBaixandoPdf(false);
     }

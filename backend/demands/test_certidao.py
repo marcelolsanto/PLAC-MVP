@@ -79,6 +79,14 @@ class TestCertidaoRastreioService(TestCase):
         self.assertEqual(resp["Content-Type"], "application/pdf")
         self.assertIn("attachment; filename=", resp["Content-Disposition"])
 
+    def test_api_emitir_certidao_pdf_inline_abre_no_navegador(self):
+        url = f"/api/planejamento/demandas/{self.demanda.id}/emitir-certidao-pdf/?inline=1"
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp["Content-Type"], "application/pdf")
+        self.assertTrue(resp["Content-Disposition"].startswith("inline; filename="))
+        self.assertTrue(resp.content.startswith(b"%PDF-"))
+
     def test_api_vincular_processo_siga(self):
         url = "/api/planejamento/vincular-processo-siga/"
         payload = {
