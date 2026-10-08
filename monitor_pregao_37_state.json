@@ -1,0 +1,48 @@
+{
+  "ultimo_check": "2026-10-05T18:45:18.441129",
+  "total_arquivos": 1,
+  "tr_revelado": false,
+  "fase_alterada": false,
+  "lotes": {
+    "Lote 1 (Centro-Oeste)": {
+      "item_id": 1,
+      "situacao": "Em andamento",
+      "sigiloso": true,
+      "valor_unitario": 0,
+      "valor_total": 0,
+      "tem_resultado": false
+    },
+    "Lote 2 (Nordeste/Norte)": {
+      "item_id": 79,
+      "situacao": "Em andamento",
+      "sigiloso": true,
+      "valor_unitario": 0,
+      "valor_total": 0,
+      "tem_resultado": false
+    },
+    "Lote 3 (Norte/Interior)": {
+      "item_id": 157,
+      "situacao": "Em andamento",
+      "sigiloso": true,
+      "valor_unitario": 0,
+      "valor_total": 0,
+      "tem_resultado": false
+    },
+    "Lote 4 (Sudeste)": {
+      "item_id": 239,
+      "situacao": "Em andamento",
+      "sigiloso": true,
+      "valor_unitario": 0,
+      "valor_total": 0,
+      "tem_resultado": false
+    },
+    "Lote 5 (Sul)": {
+      "item_id": 321,
+      "situacao": "Em andamento",
+      "sigiloso": true,
+      "valor_unitario": 0,
+      "valor_total": 0,
+      "tem_resultado": false
+    }
+  }
+}

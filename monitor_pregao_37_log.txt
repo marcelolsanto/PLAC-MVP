@@ -1,0 +1,414 @@
+[05/10/2026 15:52:57] Iniciando varredura no Compras.gov.br / PNCP para o PE nº 37/2026...
+[05/10/2026 15:52:59] Documentos anexados no PNCP: 1
+[05/10/2026 15:52:59]   • [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (Publicado: 2026-09-11T18:24:05)
+[05/10/2026 15:53:00] Erro ao consultar Lote 1 (Centro-Oeste) (item 1): 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:00] Erro ao consultar Lote 2 (Nordeste/Norte) (item 79): 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:01] Erro ao consultar Lote 3 (Norte/Interior) (item 157): 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:02] Erro ao consultar Lote 4 (Sudeste) (item 239): 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:02] Erro ao consultar Lote 5 (Sul) (item 321): 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:37] ==================================================================
+[05/10/2026 15:53:37] VARREDURA EM TEMPO REAL: PREGÃO ELETRÔNICO SRP Nº 37/2026 (TELEBRAS)
+[05/10/2026 15:53:37] ==================================================================
+[05/10/2026 15:53:38] Documentos anexados no PNCP: 1
+[05/10/2026 15:53:38]   • [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 15:53:39] Erro item 1: 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:40] Erro item 79: 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:42] Erro item 157: 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:42] Erro item 239: 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:43] Erro item 321: 'charmap' codec can't encode character '\u2713' in position 24: character maps to <undefined>
+[05/10/2026 15:53:44] Varredura concluída com sucesso no Servidor Z.
+[05/10/2026 15:54:21] ==================================================================
+[05/10/2026 15:54:22] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 15:54:22] ==================================================================
+[05/10/2026 15:54:23] Documentos anexados no PNCP: 1
+[05/10/2026 15:54:24]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 15:54:25]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:54:25]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:54:26]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:54:27]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:54:28]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:54:28] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 15:55:19] ==================================================================
+[05/10/2026 15:55:20] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 15:55:20] ==================================================================
+[05/10/2026 15:55:21] Documentos anexados no PNCP: 1
+[05/10/2026 15:55:21]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 15:55:22]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:55:22]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:55:23]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:55:24]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:55:25]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 15:55:25] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:00:36] ==================================================================
+[05/10/2026 16:00:36] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:00:37] ==================================================================
+[05/10/2026 16:00:37] Documentos anexados no PNCP: 1
+[05/10/2026 16:00:38]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:00:39]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:00:39]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:00:40]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:00:41]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:00:42]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:00:42] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:05:22] ==================================================================
+[05/10/2026 16:05:23] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:05:23] ==================================================================
+[05/10/2026 16:05:24] Documentos anexados no PNCP: 1
+[05/10/2026 16:05:25]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:05:25]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:05:26]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:05:28]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:05:29]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:05:29]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:05:31] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:14:03] ==================================================================
+[05/10/2026 16:14:03] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:14:04] ==================================================================
+[05/10/2026 16:14:05] Documentos anexados no PNCP: 1
+[05/10/2026 16:14:06]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:14:06]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:14:08]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:14:09]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:14:11]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:14:12]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:14:13] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:15:07] ==================================================================
+[05/10/2026 16:15:07] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:15:08] ==================================================================
+[05/10/2026 16:15:09] Documentos anexados no PNCP: 1
+[05/10/2026 16:15:09]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:15:10]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:15:11]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:15:13]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:15:14]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:15:14]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:15:15] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:20:09] ==================================================================
+[05/10/2026 16:20:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:20:11] ==================================================================
+[05/10/2026 16:20:12] Documentos anexados no PNCP: 1
+[05/10/2026 16:20:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:20:13]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:20:14]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:20:16]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:20:16]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:20:18]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:20:19] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:25:10] ==================================================================
+[05/10/2026 16:25:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:25:10] ==================================================================
+[05/10/2026 16:25:11] Documentos anexados no PNCP: 1
+[05/10/2026 16:25:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:25:13]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:25:14]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:25:15]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:25:16]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:25:17]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:25:18] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:30:09] ==================================================================
+[05/10/2026 16:30:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:30:11] ==================================================================
+[05/10/2026 16:30:11] Documentos anexados no PNCP: 1
+[05/10/2026 16:30:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:30:14]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:30:16]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:30:18]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:30:19]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:30:20]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:30:23] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:35:15] ==================================================================
+[05/10/2026 16:35:16] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:35:17] ==================================================================
+[05/10/2026 16:35:18] Documentos anexados no PNCP: 1
+[05/10/2026 16:35:18]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:35:19]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:35:20]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:35:21]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:35:22]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:35:23]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:35:24] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:40:07] ==================================================================
+[05/10/2026 16:40:07] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:40:08] ==================================================================
+[05/10/2026 16:40:09] Documentos anexados no PNCP: 1
+[05/10/2026 16:40:09]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:40:10]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:40:11]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:40:11]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:40:12]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:40:13]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:40:13] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:45:09] ==================================================================
+[05/10/2026 16:45:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:45:11] ==================================================================
+[05/10/2026 16:45:11] Documentos anexados no PNCP: 1
+[05/10/2026 16:45:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:45:13]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:45:14]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:45:15]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:45:16]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:45:17]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:45:17] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:50:08] ==================================================================
+[05/10/2026 16:50:09] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:50:09] ==================================================================
+[05/10/2026 16:50:10] Documentos anexados no PNCP: 1
+[05/10/2026 16:50:10]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:50:11]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:50:12]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:50:13]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:50:14]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:50:14]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:50:16] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 16:55:08] ==================================================================
+[05/10/2026 16:55:08] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 16:55:08] ==================================================================
+[05/10/2026 16:55:09] Documentos anexados no PNCP: 1
+[05/10/2026 16:55:09]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 16:55:10]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:55:11]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:55:12]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:55:14]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:55:18]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 16:55:22] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:00:09] ==================================================================
+[05/10/2026 17:00:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:00:10] ==================================================================
+[05/10/2026 17:00:11] Documentos anexados no PNCP: 1
+[05/10/2026 17:00:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:00:13]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:00:14]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:00:17]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:00:18]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:00:19]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:00:21] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:05:10] ==================================================================
+[05/10/2026 17:05:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:05:10] ==================================================================
+[05/10/2026 17:05:11] Documentos anexados no PNCP: 1
+[05/10/2026 17:05:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:05:12]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:05:13]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:05:14]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:05:15]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:05:16]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:05:16] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:10:10] ==================================================================
+[05/10/2026 17:10:12] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:10:12] ==================================================================
+[05/10/2026 17:10:16] Documentos anexados no PNCP: 1
+[05/10/2026 17:10:16]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:10:18]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:10:19]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:10:21]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:10:22]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:10:25]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:10:26] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:15:11] ==================================================================
+[05/10/2026 17:15:11] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:15:12] ==================================================================
+[05/10/2026 17:15:12] Documentos anexados no PNCP: 1
+[05/10/2026 17:15:13]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:15:14]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:15:15]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:15:16]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:15:17]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:15:17]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:15:18] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:20:08] ==================================================================
+[05/10/2026 17:20:09] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:20:09] ==================================================================
+[05/10/2026 17:20:10] Documentos anexados no PNCP: 1
+[05/10/2026 17:20:10]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:20:11]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:20:12]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:20:13]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:20:13]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:20:14]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:20:15] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:25:11] ==================================================================
+[05/10/2026 17:25:12] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:25:13] ==================================================================
+[05/10/2026 17:25:13] Documentos anexados no PNCP: 1
+[05/10/2026 17:25:14]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:25:15]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:25:15]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:25:16]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:25:17]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:25:18]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:25:22] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:30:12] ==================================================================
+[05/10/2026 17:30:12] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:30:13] ==================================================================
+[05/10/2026 17:30:13] Documentos anexados no PNCP: 1
+[05/10/2026 17:30:14]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:30:15]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:30:16]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:30:17]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:30:17]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:30:18]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:30:19] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:35:10] ==================================================================
+[05/10/2026 17:35:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:35:10] ==================================================================
+[05/10/2026 17:35:11] Documentos anexados no PNCP: 1
+[05/10/2026 17:35:11]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:35:12]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:35:13]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:35:14]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:35:15]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:35:15]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:35:16] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:44:54] ==================================================================
+[05/10/2026 17:44:55] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:44:55] ==================================================================
+[05/10/2026 17:44:56] Documentos anexados no PNCP: 1
+[05/10/2026 17:44:56]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:44:57]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:44:58]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:44:59]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:45:01]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:45:02]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:45:02] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:50:10] ==================================================================
+[05/10/2026 17:50:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:50:11] ==================================================================
+[05/10/2026 17:50:11] Documentos anexados no PNCP: 1
+[05/10/2026 17:50:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:50:13]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:50:13]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:50:15]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:50:15]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:50:16]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:50:17] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 17:55:10] ==================================================================
+[05/10/2026 17:55:11] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 17:55:11] ==================================================================
+[05/10/2026 17:55:12] Documentos anexados no PNCP: 1
+[05/10/2026 17:55:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 17:55:13]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:55:14]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:55:15]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:55:15]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:55:16]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 17:55:17] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:00:11] ==================================================================
+[05/10/2026 18:00:12] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:00:13] ==================================================================
+[05/10/2026 18:00:14] Documentos anexados no PNCP: 1
+[05/10/2026 18:00:14]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:00:16]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:00:17]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:00:18]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:00:19]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:00:21]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:00:21] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:05:09] ==================================================================
+[05/10/2026 18:05:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:05:10] ==================================================================
+[05/10/2026 18:05:12] Documentos anexados no PNCP: 1
+[05/10/2026 18:05:12]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:05:13]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:05:14]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:05:16]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:05:17]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:05:18]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:05:18] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:10:12] ==================================================================
+[05/10/2026 18:10:13] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:10:13] ==================================================================
+[05/10/2026 18:10:14] Documentos anexados no PNCP: 1
+[05/10/2026 18:10:15]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:10:16]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:10:18]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:10:19]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:10:21]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:10:22]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:10:23] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:15:11] ==================================================================
+[05/10/2026 18:15:11] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:15:12] ==================================================================
+[05/10/2026 18:15:12] Documentos anexados no PNCP: 1
+[05/10/2026 18:15:13]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:15:14]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:15:15]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:15:15]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:15:16]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:15:17]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:15:18] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:20:10] ==================================================================
+[05/10/2026 18:20:10] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:20:11] ==================================================================
+[05/10/2026 18:20:17] Erro ao buscar arquivos: HTTPSConnectionPool(host='pncp.gov.br', port=443): Max retries exceeded with url: /api/pncp/v1/orgaos/37753638000103/compras/2026/85/arquivos (Caused by ConnectTimeoutError(<HTTPSConnection(host='pncp.gov.br', port=443) at 0x153b7ef4ec0>, 'Connection to pncp.gov.br timed out. (connect timeout=6)'))
+[05/10/2026 18:20:23] Erro item 1: HTTPSConnectionPool(host='pncp.gov.br', port=443): Max retries exceeded with url: /api/pncp/v1/orgaos/37753638000103/compras/2026/85/itens/1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='pncp.gov.br', port=443) at 0x153b7ddbb10>, 'Connection to pncp.gov.br timed out. (connect timeout=6)'))
+[05/10/2026 18:20:30] Erro item 79: HTTPSConnectionPool(host='pncp.gov.br', port=443): Max retries exceeded with url: /api/pncp/v1/orgaos/37753638000103/compras/2026/85/itens/79 (Caused by ConnectTimeoutError(<HTTPSConnection(host='pncp.gov.br', port=443) at 0x153b7ddb750>, 'Connection to pncp.gov.br timed out. (connect timeout=6)'))
+[05/10/2026 18:20:36] Erro item 157: HTTPSConnectionPool(host='pncp.gov.br', port=443): Max retries exceeded with url: /api/pncp/v1/orgaos/37753638000103/compras/2026/85/itens/157 (Caused by ConnectTimeoutError(<HTTPSConnection(host='pncp.gov.br', port=443) at 0x153b7dda210>, 'Connection to pncp.gov.br timed out. (connect timeout=6)'))
+[05/10/2026 18:20:42] Erro item 239: HTTPSConnectionPool(host='pncp.gov.br', port=443): Max retries exceeded with url: /api/pncp/v1/orgaos/37753638000103/compras/2026/85/itens/239 (Caused by ConnectTimeoutError(<HTTPSConnection(host='pncp.gov.br', port=443) at 0x153b7dda990>, 'Connection to pncp.gov.br timed out. (connect timeout=6)'))
+[05/10/2026 18:20:49] Erro item 321: HTTPSConnectionPool(host='pncp.gov.br', port=443): Max retries exceeded with url: /api/pncp/v1/orgaos/37753638000103/compras/2026/85/itens/321 (Caused by ConnectTimeoutError(<HTTPSConnection(host='pncp.gov.br', port=443) at 0x153b7ddad50>, 'Connection to pncp.gov.br timed out. (connect timeout=6)'))
+[05/10/2026 18:20:49] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:24:50] ==================================================================
+[05/10/2026 18:24:50] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:24:51] ==================================================================
+[05/10/2026 18:24:52] Documentos anexados no PNCP: 1
+[05/10/2026 18:24:52]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:24:53]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:24:54]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:24:54]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:24:55]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:24:56]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:24:56] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:25:22] ==================================================================
+[05/10/2026 18:25:22] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:25:23] ==================================================================
+[05/10/2026 18:25:23] Documentos anexados no PNCP: 1
+[05/10/2026 18:25:24]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:25:25]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:25:25]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:25:26]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:25:27]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:25:28]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:25:28] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:30:17] ==================================================================
+[05/10/2026 18:30:17] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:30:18] ==================================================================
+[05/10/2026 18:30:19] Documentos anexados no PNCP: 1
+[05/10/2026 18:30:19]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:30:20]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:30:21]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:30:22]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:30:23]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:30:24]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:30:24] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:35:18] ==================================================================
+[05/10/2026 18:35:18] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:35:18] ==================================================================
+[05/10/2026 18:35:19] Documentos anexados no PNCP: 1
+[05/10/2026 18:35:20]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:35:21]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:35:21]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:35:22]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:35:23]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:35:24]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:35:24] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:40:16] ==================================================================
+[05/10/2026 18:40:16] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:40:16] ==================================================================
+[05/10/2026 18:40:17] Documentos anexados no PNCP: 1
+[05/10/2026 18:40:17]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:40:18]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:40:19]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:40:19]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:40:20]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:40:21]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:40:21] Varredura concluida com sucesso no Servidor Z.
+[05/10/2026 18:45:12] ==================================================================
+[05/10/2026 18:45:12] VARREDURA EM TEMPO REAL: PREGAO ELETRONICO SRP N 37/2026 (TELEBRAS)
+[05/10/2026 18:45:13] ==================================================================
+[05/10/2026 18:45:13] Documentos anexados no PNCP: 1
+[05/10/2026 18:45:14]   * [Edital] 01 - EDITAL E ANEXOS - PREGAO ELETRONICO SRP N 37-2026.zip (2026-09-11T18:24:05)
+[05/10/2026 18:45:15]   [OK] Lote 1 (Centro-Oeste) (Item 1): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:45:16]   [OK] Lote 2 (Nordeste/Norte) (Item 79): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:45:16]   [OK] Lote 3 (Norte/Interior) (Item 157): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:45:17]   [OK] Lote 4 (Sudeste) (Item 239): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:45:18]   [OK] Lote 5 (Sul) (Item 321): Status='Em andamento' | Sigilo=True | TR=0 | Resultado=False
+[05/10/2026 18:45:18] Varredura concluida com sucesso no Servidor Z.

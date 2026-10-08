@@ -151,3 +151,34 @@ class PNCPItemCatalogo(models.Model):
         managed = False
         db_table = 'compras_item_catalogo_local'
 
+
+class SigaProcess(models.Model):
+    numero_processo = models.CharField(max_length=60, unique=True, verbose_name="Nº Processo SIGA")
+    demand = models.ForeignKey(Demand, on_delete=models.SET_NULL, null=True, blank=True, related_name='siga_processes')
+    fase_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name="Fase Atual")
+    setor_atual = models.CharField(max_length=100, blank=True, null=True, verbose_name="Setor Atual")
+    dias_na_fase = models.IntegerField(default=0, verbose_name="Dias na Fase Atual")
+    status = models.CharField(max_length=50, blank=True, null=True, verbose_name="Status SIGA")
+    data_autuacao = models.DateField(blank=True, null=True, verbose_name="Data de Autuação")
+    
+    def __str__(self):
+        return self.numero_processo
+
+class Contract(models.Model):
+    numero_contrato = models.CharField(max_length=60, unique=True, verbose_name="Nº Contrato")
+    processo_siga = models.ForeignKey(SigaProcess, on_delete=models.SET_NULL, null=True, blank=True, related_name='contratos')
+    fornecedor = models.CharField(max_length=200, blank=True, null=True)
+    cnpj_cpf = models.CharField(max_length=30, blank=True, null=True)
+    objeto = models.TextField(blank=True, null=True)
+    modalidade = models.CharField(max_length=100, blank=True, null=True)
+    valor_global = models.DecimalField(max_digits=14, decimal_places=2, default=0.0)
+    data_inicio_vigencia = models.DateField(blank=True, null=True)
+    data_fim_vigencia = models.DateField(blank=True, null=True)
+    situacao_pncp = models.CharField(max_length=100, blank=True, null=True)
+    pncp_id = models.CharField(max_length=100, blank=True, null=True)
+    link_pncp = models.URLField(max_length=500, blank=True, null=True)
+    dias_na_area_atual = models.IntegerField(default=0)
+    ultimo_despacho_siga = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.numero_contrato
