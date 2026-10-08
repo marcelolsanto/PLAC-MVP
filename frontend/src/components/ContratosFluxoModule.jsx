@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import SigaDocumentsModal from './SigaDocumentsModal';
 import PlanejamentoCapacidadeWidget from './PlanejamentoCapacidadeWidget';
-import PlanejamentoEsteiraKanban from './PlanejamentoEsteiraKanban';
+import GovernancaEsteiraKanban from './GovernancaEsteiraKanban';
 import PlanejamentoSentinelaMonitor from './PlanejamentoSentinelaMonitor';
 
 export default function ContratosFluxoModule({ initialTab = 'panorama' }) {
@@ -1528,7 +1528,7 @@ export default function ContratosFluxoModule({ initialTab = 'panorama' }) {
 
       {/* ABA 7: ESTEIRA DE GOVERNANÇA DO PLANEJAMENTO PLAC (5 FASES) */}
       {activeSubTab === 'esteira_governanca' && (
-        <PlanejamentoEsteiraKanban />
+        <GovernancaEsteiraKanban />
       )}
 
       {/* ABA 8: ROBÔ SENTINELA DE PLANEJAMENTO & TELEMETRIA PLAC */}
